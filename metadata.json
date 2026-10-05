@@ -1,0 +1,6 @@
+{
+  "name": "DevFix AI",
+  "description": "Beginner-friendly AI developer tool for debugging code with a senior programming tutor agent.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

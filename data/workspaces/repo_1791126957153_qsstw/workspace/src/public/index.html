@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth API Demo Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="portal-container">
+    <header class="portal-header">
+      <div class="brand">
+        <img src="logo.svg" alt="Auth Portal Logo" class="brand-logo">
+        <h1>DevFix Auth Portal</h1>
+      </div>
+      <nav class="portal-nav">
+        <a href="#dashboard" class="nav-link active">Dashboard</a>
+        <a href="#payments" class="nav-link">Payments</a>
+        <a href="#settings" class="nav-link">Settings</a>
+      </nav>
+    </header>
+
+    <main class="portal-main">
+      <section class="card login-card" id="auth-section">
+        <h2>Secure Account Access</h2>
+        <p class="subtitle">Authenticate with token or standard credentials</p>
+
+        <form id="login-form">
+          <div class="form-group">
+            <label for="user-email">Email Address</label>
+            <input type="email" id="user-email" required placeholder="developer@devfix.ai">
+          </div>
+          <div class="form-group">
+            <label for="user-password">Password</label>
+            <input type="password" id="user-password" required placeholder="••••••••">
+          </div>
+          <button type="submit" id="submit-btn" class="btn btn-primary">Sign In</button>
+        </form>
+        <div id="auth-status" class="status-message"></div>
+      </section>
+
+      <section class="card telemetry-card" id="telemetry-section">
+        <h2>API &amp; Gateway Health</h2>
+        <div class="kpi-grid">
+          <div class="kpi-box">
+            <span class="kpi-label">Auth Latency</span>
+            <span class="kpi-value" id="kpi-latency">42ms</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-label">Active Sessions</span>
+            <span class="kpi-value" id="kpi-sessions">128</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="portal-footer">
+      <p>&copy; 2026 DevFix AI Continuous Engineering Demo</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

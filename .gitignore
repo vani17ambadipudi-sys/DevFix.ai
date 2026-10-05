@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+coverage/
+.DS_Store
+*.log
+logs/
+.tmp/
+temp/
+checkpoints/*.pt
+checkpoints/*.png
+.env
+.env.*
+!.env.example

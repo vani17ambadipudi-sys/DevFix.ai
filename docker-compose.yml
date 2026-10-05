@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  devfix-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devfix-ai-platform
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - JWT_SECRET=${JWT_SECRET:-devfix_production_secret_must_change_in_real_env}
+      - RATE_LIMIT_AI=20
+      - RATE_LIMIT_EXECUTION=30
+      - EXECUTION_TIMEOUT_MS=6000
+    volumes:
+      - devfix-data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  devfix-data:
+    driver: local

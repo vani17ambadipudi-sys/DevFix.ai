@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "users": [
+    {
+      "id": "user_demo_01",
+      "email": "developer@devfix.ai",
+      "name": "DevFix Engineer",
+      "passwordHash": "d1fcba528d10fb907f851f3ac6146bf87a20db115f504d72a03135d2d0240711e9c68d9c703b9f4625e41f2582768270907ce3cdec8747c1ab2071f05f33711d",
+      "salt": "bd6ab7d49569f68fee8b8e77d4d9d031",
+      "role": "developer",
+      "createdAt": "2026-10-02T15:14:44.326Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "sess_ef3224c9-b364-4877-a674-1450a0d913ee",
+      "createdAt": "2026-10-02T15:15:04.075Z",
+      "language": "Python",
+      "originalCode": "numbers = [10, 20, 30]\n\nfor i in range(len(numbers) + 1):\n    print(numbers[i])",
+      "problemSummary": "Identified off-by-one loop boundary causing an IndexError: list index out of range.",
+      "finalFixedCode": "numbers = [10, 20, 30]\n\nfor i in range(len(numbers)):\n    print(numbers[i])",
+      "status": "fixed",
+      "modelUsed": "gemini",
+      "attempts": 1,
+      "durationMs": 46,
+      "verificationPassed": true,
+      "mcpToolsUsed": [
+        "run_code"
+      ]
+    }
+  ]
+}

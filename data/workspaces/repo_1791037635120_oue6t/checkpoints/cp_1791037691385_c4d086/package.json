@@ -1,0 +1,13 @@
+{
+  "name": "auth-api-demo",
+  "version": "1.0.0",
+  "description": "Production authentication microservice with user validation",
+  "main": "src/server.ts",
+  "scripts": {
+    "test": "node tests/auth.test.js",
+    "reproduce": "node tests/reproduce.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
