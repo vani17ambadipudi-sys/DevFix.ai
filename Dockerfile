@@ -7,7 +7,7 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
 COPY . .
 RUN npm run build
@@ -34,7 +34,7 @@ RUN groupadd -g 1001 devfixgroup && \
 
 # Install production node dependencies
 COPY package*.json ./
-RUN npm ci --only=production && npm cache clean --force
+RUN if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi && npm cache clean --force
 
 # Copy application files
 COPY --chown=devfixuser:devfixgroup --from=builder /app/dist ./dist
