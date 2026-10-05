@@ -58,14 +58,15 @@ app.use(express.json({ limit: '10mb' }));
 // 2. Global Rate Limiter
 app.use(rateLimiters.general);
 
-// 3. Mount Modular Routes
+// 3. Mount Health & Status Routes First
+app.use('/', healthRoutes); // Provides /health, /health/dependencies, /api/health, /api/health/dependencies
+
+// 4. Mount Modular API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/repositories', repositoryRoutes);
-app.use('/api', repositoryRoutes);
 app.use('/api', predictionRoutes);
 app.use('/api', qualityRoutes);
-app.use('/', healthRoutes); // Provides /health and /health/dependencies and /api/health
 
 // Lazy/Safe Gemini Client initialization
 function getGeminiClient(): GoogleGenAI {

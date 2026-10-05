@@ -7,7 +7,7 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+RUN if [ -f package-lock.json ]; then npm ci || npm install; else npm install; fi
 
 COPY . .
 RUN npm run build
@@ -20,13 +20,18 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     python3-pip \
+    python3-venv \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Configure Python environment to safely allow package installation in container (PEP 668 compliance)
+ENV PIP_BREAK_SYSTEM_PACKAGES=1 \
+    PYTHONUNBUFFERED=1
+
 # Install PyTorch CPU and NumPy
-RUN python3 -m pip install --no-cache-dir --upgrade pip && \
-    python3 -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu && \
-    python3 -m pip install --no-cache-dir numpy matplotlib
+RUN python3 -m pip install --no-cache-dir --upgrade pip --break-system-packages && \
+    python3 -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu --break-system-packages && \
+    python3 -m pip install --no-cache-dir numpy matplotlib --break-system-packages
 
 # Create non-root user for process safety
 RUN groupadd -g 1001 devfixgroup && \
@@ -34,7 +39,7 @@ RUN groupadd -g 1001 devfixgroup && \
 
 # Install production node dependencies
 COPY package*.json ./
-RUN if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi && npm cache clean --force
+RUN if [ -f package-lock.json ]; then npm ci --omit=dev || npm install --omit=dev; else npm install --omit=dev; fi && npm cache clean --force
 
 # Copy application files
 COPY --chown=devfixuser:devfixgroup --from=builder /app/dist ./dist

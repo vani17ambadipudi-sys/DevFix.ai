@@ -16,8 +16,8 @@
     {
       "userId": "user_demo_01",
       "name": "auth-api-demo",
-      "originalPath": "/app/applet/data/workspaces/repo_1791203751708_f9jua/source",
-      "workspacePath": "/app/applet/data/workspaces/repo_1791203751708_f9jua/workspace",
+      "originalPath": "/app/applet/data/workspaces/repo_1791205192073_a0nhi/source",
+      "workspacePath": "/app/applet/data/workspaces/repo_1791205192073_a0nhi/workspace",
       "languages": [
         "JavaScript",
         "HTML",
@@ -31,20 +31,20 @@
       "entryPoints": [],
       "filesCount": 11,
       "status": "ready",
-      "expiresAt": "2026-10-06T12:35:51.713Z",
-      "id": "repo_3c95055d-dc7a-4aa2-b598-98543b9ed96c",
-      "createdAt": "2026-10-05T12:35:51.713Z"
+      "expiresAt": "2026-10-06T12:59:52.077Z",
+      "id": "repo_0c7a790d-19f5-4b28-a84b-efdf977c5e29",
+      "createdAt": "2026-10-05T12:59:52.077Z"
     }
   ],
   "issues": [
     {
-      "repositoryId": "repo_3c95055d-dc7a-4aa2-b598-98543b9ed96c",
+      "repositoryId": "repo_0c7a790d-19f5-4b28-a84b-efdf977c5e29",
       "title": "Login API returns HTTP 500 when email is empty instead of returning 400 Bad Requ",
       "description": "Login API returns HTTP 500 when email is empty instead of returning 400 Bad Request.",
       "errorLogs": "Error: Database lookup requires non-empty email string.",
       "status": "open",
-      "id": "issue_bc0af59d-a813-4b9e-a2b4-833f242cbe99",
-      "createdAt": "2026-10-05T12:35:51.719Z",
+      "id": "issue_14f7b43a-040c-4ac1-a527-08b2e4637d30",
+      "createdAt": "2026-10-05T12:59:52.084Z",
       "reproductionCommand": "node tests/reproduce.js",
       "reproductionResult": {
         "attempted": true,
@@ -70,8 +70,8 @@
   ],
   "patches": [
     {
-      "issueId": "issue_bc0af59d-a813-4b9e-a2b4-833f242cbe99",
-      "repositoryId": "repo_3c95055d-dc7a-4aa2-b598-98543b9ed96c",
+      "issueId": "issue_14f7b43a-040c-4ac1-a527-08b2e4637d30",
+      "repositoryId": "repo_0c7a790d-19f5-4b28-a84b-efdf977c5e29",
       "plan": {
         "targetFiles": [
           "src/routes/auth.js",
@@ -110,20 +110,2816 @@
         "concerns": []
       },
       "attempts": 1,
-      "id": "patch_fae6a797-7b9a-4cba-8ef1-b2461fd91e5d",
-      "createdAt": "2026-10-05T12:35:51.904Z"
+      "id": "patch_07bafbd8-71bb-4484-aff3-93fbde235196",
+      "createdAt": "2026-10-05T12:59:52.259Z"
     }
   ],
   "checkpoints": [
     {
-      "repositoryId": "repo_3c95055d-dc7a-4aa2-b598-98543b9ed96c",
-      "backupPath": "/app/applet/data/workspaces/repo_1791203751708_f9jua/checkpoints/cp_1791203751785_7dc1f9",
+      "repositoryId": "repo_0c7a790d-19f5-4b28-a84b-efdf977c5e29",
+      "backupPath": "/app/applet/data/workspaces/repo_1791205192073_a0nhi/checkpoints/cp_1791205192147_32ff7b",
       "label": "Pre-patch Auto Checkpoint",
-      "id": "cp_0864a1af-e3b2-4e88-afd1-4dd66c9fc807",
-      "createdAt": "2026-10-05T12:35:51.788Z"
+      "id": "cp_39a41ca3-2ef8-4874-9753-db3156f3817a",
+      "createdAt": "2026-10-05T12:59:52.149Z"
     }
   ],
   "predictionRuns": [
+    {
+      "id": "pred_b39389e3",
+      "repositoryId": "repo_demo_01",
+      "startedAt": "2026-10-05T12:59:52.267Z",
+      "completedAt": "2026-10-05T12:59:52.269Z",
+      "status": "completed",
+      "report": {
+        "id": "pred_b39389e3",
+        "repositoryId": "repo_demo_01",
+        "repositoryName": "DevFix Demo Platform (auth & payments)",
+        "generatedAt": "2026-10-05T12:59:52.269Z",
+        "durationMs": 2,
+        "totalSignalsAnalyzed": 19,
+        "riskAreas": [
+          {
+            "area": "src/payments",
+            "riskLevel": "high",
+            "confidence": "high",
+            "primaryDrivers": [
+              "8 recorded test failures",
+              "5 recent code modifications",
+              "8 repeated maintenance events",
+              "2 security advisory findings",
+              "P95 latency elevated to 780ms"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/payments",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 5,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-10-02T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/payments",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 19,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-10-02T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/payments",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 8,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:52.267Z",
+                "metadata": {
+                  "totalRuns": 13
+                }
+              },
+              {
+                "id": "sig_mnt_src/payments",
+                "category": "maintenance_frequency",
+                "signalName": "Maintenance Event Frequency",
+                "value": 8,
+                "unit": "events",
+                "period": "30_days",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:59:52.267Z"
+              },
+              {
+                "id": "sig_sec_sec_01",
+                "category": "security_findings",
+                "signalName": "Security: Timing Attack in Signature Verification",
+                "value": 2,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-30T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-208",
+                  "title": "Timing Attack in Signature Verification"
+                }
+              },
+              {
+                "id": "sig_sec_sec_02",
+                "category": "security_findings",
+                "signalName": "Security: Permissive CORS configuration on internal webhook endpoint",
+                "value": 1,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-20T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-942",
+                  "title": "Permissive CORS configuration on internal webhook endpoint"
+                }
+              },
+              {
+                "id": "sig_perf_src/payments",
+                "category": "performance_regression",
+                "signalName": "P95 Response Latency",
+                "value": 780,
+                "unit": "ms",
+                "period": "30_days",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:59:52.267Z"
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/payments_1791205192268",
+                "category": "test",
+                "area": "src/payments",
+                "observation": "8 recorded test failures in src/payments.",
+                "evidenceText": "Database records confirm 8 failing test executions out of 13 recorded runs during the past 30 days.",
+                "interpretation": "The src/payments module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:52.268Z",
+                "numericalEvidence": {
+                  "measuredValue": 8,
+                  "sampleSize": 13
+                }
+              },
+              {
+                "id": "ev_chg_src/payments_1791205192268",
+                "category": "change",
+                "area": "src/payments",
+                "observation": "High change churn detected (5 modifications in 30 days).",
+                "evidenceText": "Commit history logs show 5 separate modifications touching files within src/payments across the past 30 days.",
+                "interpretation": "Frequent code edits correlate with higher defect introduction rates when accompanied by test failures.",
+                "uncertainty": "Refactorings and formatting commits can inflate churn metrics without necessarily introducing defects.",
+                "source": "git_commits",
+                "timestamp": "2026-10-05T12:59:52.268Z",
+                "numericalEvidence": {
+                  "measuredValue": 5
+                }
+              },
+              {
+                "id": "ev_mnt_src/payments_1791205192268",
+                "category": "change",
+                "area": "src/payments",
+                "observation": "Repeated maintenance events (8 bug fixes/patches recorded).",
+                "evidenceText": "Maintenance logs detail 8 targeted bug fixes or emergency patches applied to src/payments in the past month.",
+                "interpretation": "Repeated fixes in the same module suggest underlying structural complexity or incomplete initial remediations.",
+                "uncertainty": "Maintenance events may represent distinct unrelated feature adjustments.",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:59:52.268Z",
+                "numericalEvidence": {
+                  "measuredValue": 8
+                }
+              },
+              {
+                "id": "ev_sec_src/payments_1791205192268",
+                "category": "security",
+                "area": "src/payments",
+                "observation": "2 security advisory findings associated with src/payments.",
+                "evidenceText": "Static analysis and vulnerability scans flagged 2 items (e.g. signature timing attacks or CORS exposure).",
+                "interpretation": "Security review is advisable to verify defense-in-depth and avoid potential exploits in production.",
+                "uncertainty": "Static analysis alerts require manual audit to confirm exploitability in runtime context.",
+                "source": "security_scanner",
+                "timestamp": "2026-10-05T12:59:52.268Z",
+                "numericalEvidence": {
+                  "measuredValue": 2
+                }
+              },
+              {
+                "id": "ev_perf_src/payments_1791205192268",
+                "category": "performance",
+                "area": "src/payments",
+                "observation": "Elevated P95 response latency (780ms).",
+                "evidenceText": "Telemetry recorded response times exceeding standard 500ms SLO threshold (measured P95: 780ms).",
+                "interpretation": "Upstream service calls, lock contention, or inefficient serialization may be degrading throughput.",
+                "uncertainty": "Transient external API latency can temporarily elevate P95 percentiles.",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:59:52.268Z",
+                "numericalEvidence": {
+                  "measuredValue": 780,
+                  "threshold": 500
+                }
+              }
+            ],
+            "reason": "Identified based on: 8 recorded test failures, 5 recent code modifications, 8 repeated maintenance events, 2 security advisory findings, P95 latency elevated to 780ms.",
+            "interpretation": "The src/payments area has accumulated multiple maintenance and stability signals. Proactive review and regression expansion are strongly recommended.",
+            "recommendations": [
+              {
+                "id": "rec_src_payments_test_1791205192269",
+                "area": "src/payments",
+                "title": "Expand Regression Suite for src/payments",
+                "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+                "priority": "high",
+                "category": "regression_testing",
+                "status": "accepted",
+                "evidenceSummary": "8 recorded test failures across the past 30 days.",
+                "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+                "createdAt": "2026-10-05T12:59:52.268Z"
+              },
+              {
+                "id": "rec_src_payments_refactor_1791205192269",
+                "area": "src/payments",
+                "title": "Modularize & Refactor Critical Paths in src/payments",
+                "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+                "priority": "medium",
+                "category": "refactor_complexity",
+                "status": "proposed",
+                "evidenceSummary": "5 recent commits and 8 patch events in the same module.",
+                "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+                "createdAt": "2026-10-05T12:59:52.268Z"
+              },
+              {
+                "id": "rec_src_payments_sec_1791205192269",
+                "area": "src/payments",
+                "title": "Perform Targeted Security Audit on src/payments",
+                "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+                "priority": "high",
+                "category": "security_review",
+                "status": "proposed",
+                "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+                "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+                "createdAt": "2026-10-05T12:59:52.268Z"
+              },
+              {
+                "id": "rec_src_payments_perf_1791205192269",
+                "area": "src/payments",
+                "title": "Profile Upstream Connection Latency in src/payments",
+                "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+                "priority": "medium",
+                "category": "performance_audit",
+                "status": "proposed",
+                "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+                "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+                "createdAt": "2026-10-05T12:59:52.268Z"
+              }
+            ]
+          },
+          {
+            "area": "src/auth",
+            "riskLevel": "medium",
+            "confidence": "high",
+            "primaryDrivers": [
+              "6 test failures",
+              "4 recent code edits",
+              "2 maintenance event(s)",
+              "1 security advisory finding"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/auth",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 4,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-10-03T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/auth",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 14,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-10-03T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/auth",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 6,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:52.267Z",
+                "metadata": {
+                  "totalRuns": 6
+                }
+              },
+              {
+                "id": "sig_mnt_src/auth",
+                "category": "maintenance_frequency",
+                "signalName": "Maintenance Event Frequency",
+                "value": 2,
+                "unit": "events",
+                "period": "30_days",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:59:52.267Z"
+              },
+              {
+                "id": "sig_sec_sec_03",
+                "category": "security_findings",
+                "signalName": "Security: Hardcoded Fallback JWT Secret in Test Helpers",
+                "value": 2,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-14T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-798",
+                  "title": "Hardcoded Fallback JWT Secret in Test Helpers"
+                }
+              },
+              {
+                "id": "sig_perf_src/auth",
+                "category": "performance_regression",
+                "signalName": "P95 Response Latency",
+                "value": 240,
+                "unit": "ms",
+                "period": "30_days",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:59:52.267Z"
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/auth_1791205192269",
+                "category": "test",
+                "area": "src/auth",
+                "observation": "6 recorded test failures in src/auth.",
+                "evidenceText": "Database records confirm 6 failing test executions out of 6 recorded runs during the past 30 days.",
+                "interpretation": "The src/auth module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:52.269Z",
+                "numericalEvidence": {
+                  "measuredValue": 6,
+                  "sampleSize": 6
+                }
+              },
+              {
+                "id": "ev_chg_src/auth_1791205192269",
+                "category": "change",
+                "area": "src/auth",
+                "observation": "High change churn detected (4 modifications in 30 days).",
+                "evidenceText": "Commit history logs show 4 separate modifications touching files within src/auth across the past 30 days.",
+                "interpretation": "Frequent code edits correlate with higher defect introduction rates when accompanied by test failures.",
+                "uncertainty": "Refactorings and formatting commits can inflate churn metrics without necessarily introducing defects.",
+                "source": "git_commits",
+                "timestamp": "2026-10-05T12:59:52.269Z",
+                "numericalEvidence": {
+                  "measuredValue": 4
+                }
+              },
+              {
+                "id": "ev_mnt_src/auth_1791205192269",
+                "category": "change",
+                "area": "src/auth",
+                "observation": "Repeated maintenance events (2 bug fixes/patches recorded).",
+                "evidenceText": "Maintenance logs detail 2 targeted bug fixes or emergency patches applied to src/auth in the past month.",
+                "interpretation": "Repeated fixes in the same module suggest underlying structural complexity or incomplete initial remediations.",
+                "uncertainty": "Maintenance events may represent distinct unrelated feature adjustments.",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:59:52.269Z",
+                "numericalEvidence": {
+                  "measuredValue": 2
+                }
+              },
+              {
+                "id": "ev_sec_src/auth_1791205192269",
+                "category": "security",
+                "area": "src/auth",
+                "observation": "1 security advisory findings associated with src/auth.",
+                "evidenceText": "Static analysis and vulnerability scans flagged 1 items (e.g. signature timing attacks or CORS exposure).",
+                "interpretation": "Security review is advisable to verify defense-in-depth and avoid potential exploits in production.",
+                "uncertainty": "Static analysis alerts require manual audit to confirm exploitability in runtime context.",
+                "source": "security_scanner",
+                "timestamp": "2026-10-05T12:59:52.269Z",
+                "numericalEvidence": {
+                  "measuredValue": 1
+                }
+              }
+            ],
+            "reason": "Identified based on: 6 test failures, 4 recent code edits, 2 maintenance event(s), 1 security advisory finding.",
+            "interpretation": "The src/auth area exhibits moderate maintenance signals. Targeted testing and review of recent changes are advised.",
+            "recommendations": [
+              {
+                "id": "rec_src_auth_test_1791205192269",
+                "area": "src/auth",
+                "title": "Expand Regression Suite for src/auth",
+                "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+                "priority": "medium",
+                "category": "regression_testing",
+                "status": "proposed",
+                "evidenceSummary": "6 recorded test failures across the past 30 days.",
+                "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+                "createdAt": "2026-10-05T12:59:52.269Z"
+              },
+              {
+                "id": "rec_src_auth_refactor_1791205192269",
+                "area": "src/auth",
+                "title": "Modularize & Refactor Critical Paths in src/auth",
+                "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+                "priority": "medium",
+                "category": "refactor_complexity",
+                "status": "proposed",
+                "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+                "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+                "createdAt": "2026-10-05T12:59:52.269Z"
+              },
+              {
+                "id": "rec_src_auth_sec_1791205192269",
+                "area": "src/auth",
+                "title": "Perform Targeted Security Audit on src/auth",
+                "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+                "priority": "high",
+                "category": "security_review",
+                "status": "proposed",
+                "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+                "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+                "createdAt": "2026-10-05T12:59:52.269Z"
+              }
+            ]
+          },
+          {
+            "area": "src/reports",
+            "riskLevel": "low",
+            "confidence": "medium",
+            "primaryDrivers": [
+              "2 test failure(s)"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/reports",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 2,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-09-26T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/reports",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 12,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-09-26T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/reports",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 2,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:52.267Z",
+                "metadata": {
+                  "totalRuns": 2
+                }
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/reports_1791205192269",
+                "category": "test",
+                "area": "src/reports",
+                "observation": "2 recorded test failures in src/reports.",
+                "evidenceText": "Database records confirm 2 failing test executions out of 2 recorded runs during the past 30 days.",
+                "interpretation": "The src/reports module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:52.269Z",
+                "numericalEvidence": {
+                  "measuredValue": 2,
+                  "sampleSize": 2
+                }
+              }
+            ],
+            "reason": "Identified based on: 2 test failure(s).",
+            "interpretation": "The src/reports area appears stable based on available recorded evidence.",
+            "recommendations": []
+          },
+          {
+            "area": "src/users",
+            "riskLevel": "low",
+            "confidence": "medium",
+            "primaryDrivers": [],
+            "signals": [
+              {
+                "id": "sig_chg_src/users",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 1,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-09-19T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/users",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 6,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-09-19T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/users",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 0,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:52.267Z",
+                "metadata": {
+                  "totalRuns": 2
+                }
+              }
+            ],
+            "evidence": [],
+            "reason": "Metrics are within nominal stability thresholds.",
+            "interpretation": "The src/users area appears stable based on available recorded evidence.",
+            "recommendations": []
+          }
+        ],
+        "hotspots": [
+          {
+            "path": "src/payments",
+            "changesCount": 5,
+            "failureCount": 8,
+            "maintenanceCount": 3,
+            "riskScore": 84,
+            "lastModifiedAt": "2026-10-02T15:03:21.088Z",
+            "complexityScore": 19
+          },
+          {
+            "path": "src/auth",
+            "changesCount": 4,
+            "failureCount": 6,
+            "maintenanceCount": 2,
+            "riskScore": 68,
+            "lastModifiedAt": "2026-10-03T15:03:21.088Z",
+            "complexityScore": 14
+          },
+          {
+            "path": "src/reports",
+            "changesCount": 2,
+            "failureCount": 2,
+            "maintenanceCount": 1,
+            "riskScore": 38,
+            "lastModifiedAt": "2026-09-26T15:03:21.088Z",
+            "complexityScore": 12
+          },
+          {
+            "path": "src/users",
+            "changesCount": 1,
+            "failureCount": 0,
+            "maintenanceCount": 0,
+            "riskScore": 12,
+            "lastModifiedAt": "2026-09-19T15:03:21.088Z",
+            "complexityScore": 6
+          }
+        ],
+        "timeline": [
+          {
+            "period": "Week 1",
+            "dateLabel": "Sep 7",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 0,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 0,
+            "p95LatencyMs": 0
+          },
+          {
+            "period": "Week 2",
+            "dateLabel": "Sep 14",
+            "testFailures": 3,
+            "buildFailures": 0,
+            "securityFindings": 2,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 2,
+            "p95LatencyMs": 520
+          },
+          {
+            "period": "Week 3",
+            "dateLabel": "Sep 21",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 0,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 1,
+            "p95LatencyMs": 690
+          },
+          {
+            "period": "Week 4",
+            "dateLabel": "Sep 28",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 1,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 7,
+            "p95LatencyMs": 780
+          }
+        ],
+        "recommendations": [
+          {
+            "id": "rec_src_payments_test_1791205192269",
+            "area": "src/payments",
+            "title": "Expand Regression Suite for src/payments",
+            "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+            "priority": "high",
+            "category": "regression_testing",
+            "status": "accepted",
+            "evidenceSummary": "8 recorded test failures across the past 30 days.",
+            "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+            "createdAt": "2026-10-05T12:59:52.268Z"
+          },
+          {
+            "id": "rec_src_payments_refactor_1791205192269",
+            "area": "src/payments",
+            "title": "Modularize & Refactor Critical Paths in src/payments",
+            "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+            "priority": "medium",
+            "category": "refactor_complexity",
+            "status": "proposed",
+            "evidenceSummary": "5 recent commits and 8 patch events in the same module.",
+            "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+            "createdAt": "2026-10-05T12:59:52.268Z"
+          },
+          {
+            "id": "rec_src_payments_sec_1791205192269",
+            "area": "src/payments",
+            "title": "Perform Targeted Security Audit on src/payments",
+            "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+            "priority": "high",
+            "category": "security_review",
+            "status": "proposed",
+            "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+            "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+            "createdAt": "2026-10-05T12:59:52.268Z"
+          },
+          {
+            "id": "rec_src_payments_perf_1791205192269",
+            "area": "src/payments",
+            "title": "Profile Upstream Connection Latency in src/payments",
+            "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+            "priority": "medium",
+            "category": "performance_audit",
+            "status": "proposed",
+            "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+            "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+            "createdAt": "2026-10-05T12:59:52.268Z"
+          },
+          {
+            "id": "rec_src_auth_test_1791205192269",
+            "area": "src/auth",
+            "title": "Expand Regression Suite for src/auth",
+            "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+            "priority": "medium",
+            "category": "regression_testing",
+            "status": "proposed",
+            "evidenceSummary": "6 recorded test failures across the past 30 days.",
+            "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+            "createdAt": "2026-10-05T12:59:52.269Z"
+          },
+          {
+            "id": "rec_src_auth_refactor_1791205192269",
+            "area": "src/auth",
+            "title": "Modularize & Refactor Critical Paths in src/auth",
+            "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+            "priority": "medium",
+            "category": "refactor_complexity",
+            "status": "proposed",
+            "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+            "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+            "createdAt": "2026-10-05T12:59:52.269Z"
+          },
+          {
+            "id": "rec_src_auth_sec_1791205192269",
+            "area": "src/auth",
+            "title": "Perform Targeted Security Audit on src/auth",
+            "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+            "priority": "high",
+            "category": "security_review",
+            "status": "proposed",
+            "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+            "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+            "createdAt": "2026-10-05T12:59:52.269Z"
+          }
+        ],
+        "summary": {
+          "highRiskCount": 1,
+          "mediumRiskCount": 1,
+          "lowRiskCount": 2,
+          "unknownRiskCount": 0,
+          "totalHotspots": 4,
+          "recommendedActionsCount": 7
+        }
+      }
+    },
+    {
+      "id": "pred_d719be0d",
+      "repositoryId": "repo_demo_01",
+      "startedAt": "2026-10-05T12:59:47.010Z",
+      "completedAt": "2026-10-05T12:59:47.013Z",
+      "status": "completed",
+      "report": {
+        "id": "pred_d719be0d",
+        "repositoryId": "repo_demo_01",
+        "repositoryName": "DevFix Demo Platform (auth & payments)",
+        "generatedAt": "2026-10-05T12:59:47.013Z",
+        "durationMs": 3,
+        "totalSignalsAnalyzed": 19,
+        "riskAreas": [
+          {
+            "area": "src/payments",
+            "riskLevel": "high",
+            "confidence": "high",
+            "primaryDrivers": [
+              "8 recorded test failures",
+              "5 recent code modifications",
+              "8 repeated maintenance events",
+              "2 security advisory findings",
+              "P95 latency elevated to 780ms"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/payments",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 5,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-10-02T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/payments",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 19,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-10-02T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/payments",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 8,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:47.011Z",
+                "metadata": {
+                  "totalRuns": 13
+                }
+              },
+              {
+                "id": "sig_mnt_src/payments",
+                "category": "maintenance_frequency",
+                "signalName": "Maintenance Event Frequency",
+                "value": 8,
+                "unit": "events",
+                "period": "30_days",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:59:47.011Z"
+              },
+              {
+                "id": "sig_sec_sec_01",
+                "category": "security_findings",
+                "signalName": "Security: Timing Attack in Signature Verification",
+                "value": 2,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-30T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-208",
+                  "title": "Timing Attack in Signature Verification"
+                }
+              },
+              {
+                "id": "sig_sec_sec_02",
+                "category": "security_findings",
+                "signalName": "Security: Permissive CORS configuration on internal webhook endpoint",
+                "value": 1,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-20T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-942",
+                  "title": "Permissive CORS configuration on internal webhook endpoint"
+                }
+              },
+              {
+                "id": "sig_perf_src/payments",
+                "category": "performance_regression",
+                "signalName": "P95 Response Latency",
+                "value": 780,
+                "unit": "ms",
+                "period": "30_days",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:59:47.011Z"
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/payments_1791205187012",
+                "category": "test",
+                "area": "src/payments",
+                "observation": "8 recorded test failures in src/payments.",
+                "evidenceText": "Database records confirm 8 failing test executions out of 13 recorded runs during the past 30 days.",
+                "interpretation": "The src/payments module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:47.012Z",
+                "numericalEvidence": {
+                  "measuredValue": 8,
+                  "sampleSize": 13
+                }
+              },
+              {
+                "id": "ev_chg_src/payments_1791205187012",
+                "category": "change",
+                "area": "src/payments",
+                "observation": "High change churn detected (5 modifications in 30 days).",
+                "evidenceText": "Commit history logs show 5 separate modifications touching files within src/payments across the past 30 days.",
+                "interpretation": "Frequent code edits correlate with higher defect introduction rates when accompanied by test failures.",
+                "uncertainty": "Refactorings and formatting commits can inflate churn metrics without necessarily introducing defects.",
+                "source": "git_commits",
+                "timestamp": "2026-10-05T12:59:47.012Z",
+                "numericalEvidence": {
+                  "measuredValue": 5
+                }
+              },
+              {
+                "id": "ev_mnt_src/payments_1791205187012",
+                "category": "change",
+                "area": "src/payments",
+                "observation": "Repeated maintenance events (8 bug fixes/patches recorded).",
+                "evidenceText": "Maintenance logs detail 8 targeted bug fixes or emergency patches applied to src/payments in the past month.",
+                "interpretation": "Repeated fixes in the same module suggest underlying structural complexity or incomplete initial remediations.",
+                "uncertainty": "Maintenance events may represent distinct unrelated feature adjustments.",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:59:47.012Z",
+                "numericalEvidence": {
+                  "measuredValue": 8
+                }
+              },
+              {
+                "id": "ev_sec_src/payments_1791205187012",
+                "category": "security",
+                "area": "src/payments",
+                "observation": "2 security advisory findings associated with src/payments.",
+                "evidenceText": "Static analysis and vulnerability scans flagged 2 items (e.g. signature timing attacks or CORS exposure).",
+                "interpretation": "Security review is advisable to verify defense-in-depth and avoid potential exploits in production.",
+                "uncertainty": "Static analysis alerts require manual audit to confirm exploitability in runtime context.",
+                "source": "security_scanner",
+                "timestamp": "2026-10-05T12:59:47.012Z",
+                "numericalEvidence": {
+                  "measuredValue": 2
+                }
+              },
+              {
+                "id": "ev_perf_src/payments_1791205187012",
+                "category": "performance",
+                "area": "src/payments",
+                "observation": "Elevated P95 response latency (780ms).",
+                "evidenceText": "Telemetry recorded response times exceeding standard 500ms SLO threshold (measured P95: 780ms).",
+                "interpretation": "Upstream service calls, lock contention, or inefficient serialization may be degrading throughput.",
+                "uncertainty": "Transient external API latency can temporarily elevate P95 percentiles.",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:59:47.012Z",
+                "numericalEvidence": {
+                  "measuredValue": 780,
+                  "threshold": 500
+                }
+              }
+            ],
+            "reason": "Identified based on: 8 recorded test failures, 5 recent code modifications, 8 repeated maintenance events, 2 security advisory findings, P95 latency elevated to 780ms.",
+            "interpretation": "The src/payments area has accumulated multiple maintenance and stability signals. Proactive review and regression expansion are strongly recommended.",
+            "recommendations": [
+              {
+                "id": "rec_src_payments_test_1791205187013",
+                "area": "src/payments",
+                "title": "Expand Regression Suite for src/payments",
+                "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+                "priority": "high",
+                "category": "regression_testing",
+                "status": "proposed",
+                "evidenceSummary": "8 recorded test failures across the past 30 days.",
+                "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+                "createdAt": "2026-10-05T12:59:47.013Z"
+              },
+              {
+                "id": "rec_src_payments_refactor_1791205187013",
+                "area": "src/payments",
+                "title": "Modularize & Refactor Critical Paths in src/payments",
+                "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+                "priority": "medium",
+                "category": "refactor_complexity",
+                "status": "proposed",
+                "evidenceSummary": "5 recent commits and 8 patch events in the same module.",
+                "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+                "createdAt": "2026-10-05T12:59:47.013Z"
+              },
+              {
+                "id": "rec_src_payments_sec_1791205187013",
+                "area": "src/payments",
+                "title": "Perform Targeted Security Audit on src/payments",
+                "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+                "priority": "high",
+                "category": "security_review",
+                "status": "proposed",
+                "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+                "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+                "createdAt": "2026-10-05T12:59:47.013Z"
+              },
+              {
+                "id": "rec_src_payments_perf_1791205187013",
+                "area": "src/payments",
+                "title": "Profile Upstream Connection Latency in src/payments",
+                "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+                "priority": "medium",
+                "category": "performance_audit",
+                "status": "proposed",
+                "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+                "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+                "createdAt": "2026-10-05T12:59:47.013Z"
+              }
+            ]
+          },
+          {
+            "area": "src/auth",
+            "riskLevel": "medium",
+            "confidence": "high",
+            "primaryDrivers": [
+              "6 test failures",
+              "4 recent code edits",
+              "2 maintenance event(s)",
+              "1 security advisory finding"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/auth",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 4,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-10-03T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/auth",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 14,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-10-03T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/auth",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 6,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:47.011Z",
+                "metadata": {
+                  "totalRuns": 6
+                }
+              },
+              {
+                "id": "sig_mnt_src/auth",
+                "category": "maintenance_frequency",
+                "signalName": "Maintenance Event Frequency",
+                "value": 2,
+                "unit": "events",
+                "period": "30_days",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:59:47.011Z"
+              },
+              {
+                "id": "sig_sec_sec_03",
+                "category": "security_findings",
+                "signalName": "Security: Hardcoded Fallback JWT Secret in Test Helpers",
+                "value": 2,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-14T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-798",
+                  "title": "Hardcoded Fallback JWT Secret in Test Helpers"
+                }
+              },
+              {
+                "id": "sig_perf_src/auth",
+                "category": "performance_regression",
+                "signalName": "P95 Response Latency",
+                "value": 240,
+                "unit": "ms",
+                "period": "30_days",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:59:47.011Z"
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/auth_1791205187013",
+                "category": "test",
+                "area": "src/auth",
+                "observation": "6 recorded test failures in src/auth.",
+                "evidenceText": "Database records confirm 6 failing test executions out of 6 recorded runs during the past 30 days.",
+                "interpretation": "The src/auth module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:47.013Z",
+                "numericalEvidence": {
+                  "measuredValue": 6,
+                  "sampleSize": 6
+                }
+              },
+              {
+                "id": "ev_chg_src/auth_1791205187013",
+                "category": "change",
+                "area": "src/auth",
+                "observation": "High change churn detected (4 modifications in 30 days).",
+                "evidenceText": "Commit history logs show 4 separate modifications touching files within src/auth across the past 30 days.",
+                "interpretation": "Frequent code edits correlate with higher defect introduction rates when accompanied by test failures.",
+                "uncertainty": "Refactorings and formatting commits can inflate churn metrics without necessarily introducing defects.",
+                "source": "git_commits",
+                "timestamp": "2026-10-05T12:59:47.013Z",
+                "numericalEvidence": {
+                  "measuredValue": 4
+                }
+              },
+              {
+                "id": "ev_mnt_src/auth_1791205187013",
+                "category": "change",
+                "area": "src/auth",
+                "observation": "Repeated maintenance events (2 bug fixes/patches recorded).",
+                "evidenceText": "Maintenance logs detail 2 targeted bug fixes or emergency patches applied to src/auth in the past month.",
+                "interpretation": "Repeated fixes in the same module suggest underlying structural complexity or incomplete initial remediations.",
+                "uncertainty": "Maintenance events may represent distinct unrelated feature adjustments.",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:59:47.013Z",
+                "numericalEvidence": {
+                  "measuredValue": 2
+                }
+              },
+              {
+                "id": "ev_sec_src/auth_1791205187013",
+                "category": "security",
+                "area": "src/auth",
+                "observation": "1 security advisory findings associated with src/auth.",
+                "evidenceText": "Static analysis and vulnerability scans flagged 1 items (e.g. signature timing attacks or CORS exposure).",
+                "interpretation": "Security review is advisable to verify defense-in-depth and avoid potential exploits in production.",
+                "uncertainty": "Static analysis alerts require manual audit to confirm exploitability in runtime context.",
+                "source": "security_scanner",
+                "timestamp": "2026-10-05T12:59:47.013Z",
+                "numericalEvidence": {
+                  "measuredValue": 1
+                }
+              }
+            ],
+            "reason": "Identified based on: 6 test failures, 4 recent code edits, 2 maintenance event(s), 1 security advisory finding.",
+            "interpretation": "The src/auth area exhibits moderate maintenance signals. Targeted testing and review of recent changes are advised.",
+            "recommendations": [
+              {
+                "id": "rec_src_auth_test_1791205187013",
+                "area": "src/auth",
+                "title": "Expand Regression Suite for src/auth",
+                "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+                "priority": "medium",
+                "category": "regression_testing",
+                "status": "proposed",
+                "evidenceSummary": "6 recorded test failures across the past 30 days.",
+                "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+                "createdAt": "2026-10-05T12:59:47.013Z"
+              },
+              {
+                "id": "rec_src_auth_refactor_1791205187013",
+                "area": "src/auth",
+                "title": "Modularize & Refactor Critical Paths in src/auth",
+                "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+                "priority": "medium",
+                "category": "refactor_complexity",
+                "status": "proposed",
+                "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+                "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+                "createdAt": "2026-10-05T12:59:47.013Z"
+              },
+              {
+                "id": "rec_src_auth_sec_1791205187013",
+                "area": "src/auth",
+                "title": "Perform Targeted Security Audit on src/auth",
+                "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+                "priority": "high",
+                "category": "security_review",
+                "status": "proposed",
+                "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+                "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+                "createdAt": "2026-10-05T12:59:47.013Z"
+              }
+            ]
+          },
+          {
+            "area": "src/reports",
+            "riskLevel": "low",
+            "confidence": "medium",
+            "primaryDrivers": [
+              "2 test failure(s)"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/reports",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 2,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-09-26T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/reports",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 12,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-09-26T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/reports",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 2,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:47.011Z",
+                "metadata": {
+                  "totalRuns": 2
+                }
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/reports_1791205187013",
+                "category": "test",
+                "area": "src/reports",
+                "observation": "2 recorded test failures in src/reports.",
+                "evidenceText": "Database records confirm 2 failing test executions out of 2 recorded runs during the past 30 days.",
+                "interpretation": "The src/reports module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:47.013Z",
+                "numericalEvidence": {
+                  "measuredValue": 2,
+                  "sampleSize": 2
+                }
+              }
+            ],
+            "reason": "Identified based on: 2 test failure(s).",
+            "interpretation": "The src/reports area appears stable based on available recorded evidence.",
+            "recommendations": []
+          },
+          {
+            "area": "src/users",
+            "riskLevel": "low",
+            "confidence": "medium",
+            "primaryDrivers": [],
+            "signals": [
+              {
+                "id": "sig_chg_src/users",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 1,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-09-19T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/users",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 6,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-09-19T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/users",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 0,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:59:47.011Z",
+                "metadata": {
+                  "totalRuns": 2
+                }
+              }
+            ],
+            "evidence": [],
+            "reason": "Metrics are within nominal stability thresholds.",
+            "interpretation": "The src/users area appears stable based on available recorded evidence.",
+            "recommendations": []
+          }
+        ],
+        "hotspots": [
+          {
+            "path": "src/payments",
+            "changesCount": 5,
+            "failureCount": 8,
+            "maintenanceCount": 3,
+            "riskScore": 84,
+            "lastModifiedAt": "2026-10-02T15:03:21.088Z",
+            "complexityScore": 19
+          },
+          {
+            "path": "src/auth",
+            "changesCount": 4,
+            "failureCount": 6,
+            "maintenanceCount": 2,
+            "riskScore": 68,
+            "lastModifiedAt": "2026-10-03T15:03:21.088Z",
+            "complexityScore": 14
+          },
+          {
+            "path": "src/reports",
+            "changesCount": 2,
+            "failureCount": 2,
+            "maintenanceCount": 1,
+            "riskScore": 38,
+            "lastModifiedAt": "2026-09-26T15:03:21.088Z",
+            "complexityScore": 12
+          },
+          {
+            "path": "src/users",
+            "changesCount": 1,
+            "failureCount": 0,
+            "maintenanceCount": 0,
+            "riskScore": 12,
+            "lastModifiedAt": "2026-09-19T15:03:21.088Z",
+            "complexityScore": 6
+          }
+        ],
+        "timeline": [
+          {
+            "period": "Week 1",
+            "dateLabel": "Sep 7",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 0,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 0,
+            "p95LatencyMs": 0
+          },
+          {
+            "period": "Week 2",
+            "dateLabel": "Sep 14",
+            "testFailures": 3,
+            "buildFailures": 0,
+            "securityFindings": 2,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 2,
+            "p95LatencyMs": 520
+          },
+          {
+            "period": "Week 3",
+            "dateLabel": "Sep 21",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 0,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 1,
+            "p95LatencyMs": 690
+          },
+          {
+            "period": "Week 4",
+            "dateLabel": "Sep 28",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 1,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 7,
+            "p95LatencyMs": 780
+          }
+        ],
+        "recommendations": [
+          {
+            "id": "rec_src_payments_test_1791205187013",
+            "area": "src/payments",
+            "title": "Expand Regression Suite for src/payments",
+            "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+            "priority": "high",
+            "category": "regression_testing",
+            "status": "proposed",
+            "evidenceSummary": "8 recorded test failures across the past 30 days.",
+            "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+            "createdAt": "2026-10-05T12:59:47.013Z"
+          },
+          {
+            "id": "rec_src_payments_refactor_1791205187013",
+            "area": "src/payments",
+            "title": "Modularize & Refactor Critical Paths in src/payments",
+            "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+            "priority": "medium",
+            "category": "refactor_complexity",
+            "status": "proposed",
+            "evidenceSummary": "5 recent commits and 8 patch events in the same module.",
+            "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+            "createdAt": "2026-10-05T12:59:47.013Z"
+          },
+          {
+            "id": "rec_src_payments_sec_1791205187013",
+            "area": "src/payments",
+            "title": "Perform Targeted Security Audit on src/payments",
+            "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+            "priority": "high",
+            "category": "security_review",
+            "status": "proposed",
+            "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+            "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+            "createdAt": "2026-10-05T12:59:47.013Z"
+          },
+          {
+            "id": "rec_src_payments_perf_1791205187013",
+            "area": "src/payments",
+            "title": "Profile Upstream Connection Latency in src/payments",
+            "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+            "priority": "medium",
+            "category": "performance_audit",
+            "status": "proposed",
+            "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+            "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+            "createdAt": "2026-10-05T12:59:47.013Z"
+          },
+          {
+            "id": "rec_src_auth_test_1791205187013",
+            "area": "src/auth",
+            "title": "Expand Regression Suite for src/auth",
+            "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+            "priority": "medium",
+            "category": "regression_testing",
+            "status": "proposed",
+            "evidenceSummary": "6 recorded test failures across the past 30 days.",
+            "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+            "createdAt": "2026-10-05T12:59:47.013Z"
+          },
+          {
+            "id": "rec_src_auth_refactor_1791205187013",
+            "area": "src/auth",
+            "title": "Modularize & Refactor Critical Paths in src/auth",
+            "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+            "priority": "medium",
+            "category": "refactor_complexity",
+            "status": "proposed",
+            "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+            "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+            "createdAt": "2026-10-05T12:59:47.013Z"
+          },
+          {
+            "id": "rec_src_auth_sec_1791205187013",
+            "area": "src/auth",
+            "title": "Perform Targeted Security Audit on src/auth",
+            "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+            "priority": "high",
+            "category": "security_review",
+            "status": "proposed",
+            "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+            "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+            "createdAt": "2026-10-05T12:59:47.013Z"
+          }
+        ],
+        "summary": {
+          "highRiskCount": 1,
+          "mediumRiskCount": 1,
+          "lowRiskCount": 2,
+          "unknownRiskCount": 0,
+          "totalHotspots": 4,
+          "recommendedActionsCount": 7
+        }
+      }
+    },
+    {
+      "id": "pred_01b0c6b0",
+      "repositoryId": "repo_demo_01",
+      "startedAt": "2026-10-05T12:58:08.814Z",
+      "completedAt": "2026-10-05T12:58:08.815Z",
+      "status": "completed",
+      "report": {
+        "id": "pred_01b0c6b0",
+        "repositoryId": "repo_demo_01",
+        "repositoryName": "DevFix Demo Platform (auth & payments)",
+        "generatedAt": "2026-10-05T12:58:08.815Z",
+        "durationMs": 1,
+        "totalSignalsAnalyzed": 19,
+        "riskAreas": [
+          {
+            "area": "src/payments",
+            "riskLevel": "high",
+            "confidence": "high",
+            "primaryDrivers": [
+              "8 recorded test failures",
+              "5 recent code modifications",
+              "7 repeated maintenance events",
+              "2 security advisory findings",
+              "P95 latency elevated to 780ms"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/payments",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 5,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-10-02T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/payments",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 19,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-10-02T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/payments",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 8,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:08.814Z",
+                "metadata": {
+                  "totalRuns": 12
+                }
+              },
+              {
+                "id": "sig_mnt_src/payments",
+                "category": "maintenance_frequency",
+                "signalName": "Maintenance Event Frequency",
+                "value": 7,
+                "unit": "events",
+                "period": "30_days",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:58:08.814Z"
+              },
+              {
+                "id": "sig_sec_sec_01",
+                "category": "security_findings",
+                "signalName": "Security: Timing Attack in Signature Verification",
+                "value": 2,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-30T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-208",
+                  "title": "Timing Attack in Signature Verification"
+                }
+              },
+              {
+                "id": "sig_sec_sec_02",
+                "category": "security_findings",
+                "signalName": "Security: Permissive CORS configuration on internal webhook endpoint",
+                "value": 1,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-20T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-942",
+                  "title": "Permissive CORS configuration on internal webhook endpoint"
+                }
+              },
+              {
+                "id": "sig_perf_src/payments",
+                "category": "performance_regression",
+                "signalName": "P95 Response Latency",
+                "value": 780,
+                "unit": "ms",
+                "period": "30_days",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:58:08.814Z"
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/payments_1791205088815",
+                "category": "test",
+                "area": "src/payments",
+                "observation": "8 recorded test failures in src/payments.",
+                "evidenceText": "Database records confirm 8 failing test executions out of 12 recorded runs during the past 30 days.",
+                "interpretation": "The src/payments module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:08.815Z",
+                "numericalEvidence": {
+                  "measuredValue": 8,
+                  "sampleSize": 12
+                }
+              },
+              {
+                "id": "ev_chg_src/payments_1791205088815",
+                "category": "change",
+                "area": "src/payments",
+                "observation": "High change churn detected (5 modifications in 30 days).",
+                "evidenceText": "Commit history logs show 5 separate modifications touching files within src/payments across the past 30 days.",
+                "interpretation": "Frequent code edits correlate with higher defect introduction rates when accompanied by test failures.",
+                "uncertainty": "Refactorings and formatting commits can inflate churn metrics without necessarily introducing defects.",
+                "source": "git_commits",
+                "timestamp": "2026-10-05T12:58:08.815Z",
+                "numericalEvidence": {
+                  "measuredValue": 5
+                }
+              },
+              {
+                "id": "ev_mnt_src/payments_1791205088815",
+                "category": "change",
+                "area": "src/payments",
+                "observation": "Repeated maintenance events (7 bug fixes/patches recorded).",
+                "evidenceText": "Maintenance logs detail 7 targeted bug fixes or emergency patches applied to src/payments in the past month.",
+                "interpretation": "Repeated fixes in the same module suggest underlying structural complexity or incomplete initial remediations.",
+                "uncertainty": "Maintenance events may represent distinct unrelated feature adjustments.",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:58:08.815Z",
+                "numericalEvidence": {
+                  "measuredValue": 7
+                }
+              },
+              {
+                "id": "ev_sec_src/payments_1791205088815",
+                "category": "security",
+                "area": "src/payments",
+                "observation": "2 security advisory findings associated with src/payments.",
+                "evidenceText": "Static analysis and vulnerability scans flagged 2 items (e.g. signature timing attacks or CORS exposure).",
+                "interpretation": "Security review is advisable to verify defense-in-depth and avoid potential exploits in production.",
+                "uncertainty": "Static analysis alerts require manual audit to confirm exploitability in runtime context.",
+                "source": "security_scanner",
+                "timestamp": "2026-10-05T12:58:08.815Z",
+                "numericalEvidence": {
+                  "measuredValue": 2
+                }
+              },
+              {
+                "id": "ev_perf_src/payments_1791205088815",
+                "category": "performance",
+                "area": "src/payments",
+                "observation": "Elevated P95 response latency (780ms).",
+                "evidenceText": "Telemetry recorded response times exceeding standard 500ms SLO threshold (measured P95: 780ms).",
+                "interpretation": "Upstream service calls, lock contention, or inefficient serialization may be degrading throughput.",
+                "uncertainty": "Transient external API latency can temporarily elevate P95 percentiles.",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:58:08.815Z",
+                "numericalEvidence": {
+                  "measuredValue": 780,
+                  "threshold": 500
+                }
+              }
+            ],
+            "reason": "Identified based on: 8 recorded test failures, 5 recent code modifications, 7 repeated maintenance events, 2 security advisory findings, P95 latency elevated to 780ms.",
+            "interpretation": "The src/payments area has accumulated multiple maintenance and stability signals. Proactive review and regression expansion are strongly recommended.",
+            "recommendations": [
+              {
+                "id": "rec_src_payments_test_1791205088815",
+                "area": "src/payments",
+                "title": "Expand Regression Suite for src/payments",
+                "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+                "priority": "high",
+                "category": "regression_testing",
+                "status": "accepted",
+                "evidenceSummary": "8 recorded test failures across the past 30 days.",
+                "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+                "createdAt": "2026-10-05T12:58:08.815Z"
+              },
+              {
+                "id": "rec_src_payments_refactor_1791205088815",
+                "area": "src/payments",
+                "title": "Modularize & Refactor Critical Paths in src/payments",
+                "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+                "priority": "medium",
+                "category": "refactor_complexity",
+                "status": "proposed",
+                "evidenceSummary": "5 recent commits and 7 patch events in the same module.",
+                "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+                "createdAt": "2026-10-05T12:58:08.815Z"
+              },
+              {
+                "id": "rec_src_payments_sec_1791205088815",
+                "area": "src/payments",
+                "title": "Perform Targeted Security Audit on src/payments",
+                "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+                "priority": "high",
+                "category": "security_review",
+                "status": "proposed",
+                "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+                "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+                "createdAt": "2026-10-05T12:58:08.815Z"
+              },
+              {
+                "id": "rec_src_payments_perf_1791205088815",
+                "area": "src/payments",
+                "title": "Profile Upstream Connection Latency in src/payments",
+                "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+                "priority": "medium",
+                "category": "performance_audit",
+                "status": "proposed",
+                "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+                "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+                "createdAt": "2026-10-05T12:58:08.815Z"
+              }
+            ]
+          },
+          {
+            "area": "src/auth",
+            "riskLevel": "medium",
+            "confidence": "high",
+            "primaryDrivers": [
+              "6 test failures",
+              "4 recent code edits",
+              "2 maintenance event(s)",
+              "1 security advisory finding"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/auth",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 4,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-10-03T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/auth",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 14,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-10-03T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/auth",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 6,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:08.814Z",
+                "metadata": {
+                  "totalRuns": 6
+                }
+              },
+              {
+                "id": "sig_mnt_src/auth",
+                "category": "maintenance_frequency",
+                "signalName": "Maintenance Event Frequency",
+                "value": 2,
+                "unit": "events",
+                "period": "30_days",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:58:08.814Z"
+              },
+              {
+                "id": "sig_sec_sec_03",
+                "category": "security_findings",
+                "signalName": "Security: Hardcoded Fallback JWT Secret in Test Helpers",
+                "value": 2,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-14T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-798",
+                  "title": "Hardcoded Fallback JWT Secret in Test Helpers"
+                }
+              },
+              {
+                "id": "sig_perf_src/auth",
+                "category": "performance_regression",
+                "signalName": "P95 Response Latency",
+                "value": 240,
+                "unit": "ms",
+                "period": "30_days",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:58:08.814Z"
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/auth_1791205088815",
+                "category": "test",
+                "area": "src/auth",
+                "observation": "6 recorded test failures in src/auth.",
+                "evidenceText": "Database records confirm 6 failing test executions out of 6 recorded runs during the past 30 days.",
+                "interpretation": "The src/auth module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:08.815Z",
+                "numericalEvidence": {
+                  "measuredValue": 6,
+                  "sampleSize": 6
+                }
+              },
+              {
+                "id": "ev_chg_src/auth_1791205088815",
+                "category": "change",
+                "area": "src/auth",
+                "observation": "High change churn detected (4 modifications in 30 days).",
+                "evidenceText": "Commit history logs show 4 separate modifications touching files within src/auth across the past 30 days.",
+                "interpretation": "Frequent code edits correlate with higher defect introduction rates when accompanied by test failures.",
+                "uncertainty": "Refactorings and formatting commits can inflate churn metrics without necessarily introducing defects.",
+                "source": "git_commits",
+                "timestamp": "2026-10-05T12:58:08.815Z",
+                "numericalEvidence": {
+                  "measuredValue": 4
+                }
+              },
+              {
+                "id": "ev_mnt_src/auth_1791205088815",
+                "category": "change",
+                "area": "src/auth",
+                "observation": "Repeated maintenance events (2 bug fixes/patches recorded).",
+                "evidenceText": "Maintenance logs detail 2 targeted bug fixes or emergency patches applied to src/auth in the past month.",
+                "interpretation": "Repeated fixes in the same module suggest underlying structural complexity or incomplete initial remediations.",
+                "uncertainty": "Maintenance events may represent distinct unrelated feature adjustments.",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:58:08.815Z",
+                "numericalEvidence": {
+                  "measuredValue": 2
+                }
+              },
+              {
+                "id": "ev_sec_src/auth_1791205088815",
+                "category": "security",
+                "area": "src/auth",
+                "observation": "1 security advisory findings associated with src/auth.",
+                "evidenceText": "Static analysis and vulnerability scans flagged 1 items (e.g. signature timing attacks or CORS exposure).",
+                "interpretation": "Security review is advisable to verify defense-in-depth and avoid potential exploits in production.",
+                "uncertainty": "Static analysis alerts require manual audit to confirm exploitability in runtime context.",
+                "source": "security_scanner",
+                "timestamp": "2026-10-05T12:58:08.815Z",
+                "numericalEvidence": {
+                  "measuredValue": 1
+                }
+              }
+            ],
+            "reason": "Identified based on: 6 test failures, 4 recent code edits, 2 maintenance event(s), 1 security advisory finding.",
+            "interpretation": "The src/auth area exhibits moderate maintenance signals. Targeted testing and review of recent changes are advised.",
+            "recommendations": [
+              {
+                "id": "rec_src_auth_test_1791205088815",
+                "area": "src/auth",
+                "title": "Expand Regression Suite for src/auth",
+                "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+                "priority": "medium",
+                "category": "regression_testing",
+                "status": "proposed",
+                "evidenceSummary": "6 recorded test failures across the past 30 days.",
+                "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+                "createdAt": "2026-10-05T12:58:08.815Z"
+              },
+              {
+                "id": "rec_src_auth_refactor_1791205088815",
+                "area": "src/auth",
+                "title": "Modularize & Refactor Critical Paths in src/auth",
+                "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+                "priority": "medium",
+                "category": "refactor_complexity",
+                "status": "proposed",
+                "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+                "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+                "createdAt": "2026-10-05T12:58:08.815Z"
+              },
+              {
+                "id": "rec_src_auth_sec_1791205088815",
+                "area": "src/auth",
+                "title": "Perform Targeted Security Audit on src/auth",
+                "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+                "priority": "high",
+                "category": "security_review",
+                "status": "proposed",
+                "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+                "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+                "createdAt": "2026-10-05T12:58:08.815Z"
+              }
+            ]
+          },
+          {
+            "area": "src/reports",
+            "riskLevel": "low",
+            "confidence": "medium",
+            "primaryDrivers": [
+              "2 test failure(s)"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/reports",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 2,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-09-26T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/reports",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 12,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-09-26T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/reports",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 2,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:08.814Z",
+                "metadata": {
+                  "totalRuns": 2
+                }
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/reports_1791205088815",
+                "category": "test",
+                "area": "src/reports",
+                "observation": "2 recorded test failures in src/reports.",
+                "evidenceText": "Database records confirm 2 failing test executions out of 2 recorded runs during the past 30 days.",
+                "interpretation": "The src/reports module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:08.815Z",
+                "numericalEvidence": {
+                  "measuredValue": 2,
+                  "sampleSize": 2
+                }
+              }
+            ],
+            "reason": "Identified based on: 2 test failure(s).",
+            "interpretation": "The src/reports area appears stable based on available recorded evidence.",
+            "recommendations": []
+          },
+          {
+            "area": "src/users",
+            "riskLevel": "low",
+            "confidence": "medium",
+            "primaryDrivers": [],
+            "signals": [
+              {
+                "id": "sig_chg_src/users",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 1,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-09-19T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/users",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 6,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-09-19T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/users",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 0,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:08.814Z",
+                "metadata": {
+                  "totalRuns": 2
+                }
+              }
+            ],
+            "evidence": [],
+            "reason": "Metrics are within nominal stability thresholds.",
+            "interpretation": "The src/users area appears stable based on available recorded evidence.",
+            "recommendations": []
+          }
+        ],
+        "hotspots": [
+          {
+            "path": "src/payments",
+            "changesCount": 5,
+            "failureCount": 8,
+            "maintenanceCount": 3,
+            "riskScore": 84,
+            "lastModifiedAt": "2026-10-02T15:03:21.088Z",
+            "complexityScore": 19
+          },
+          {
+            "path": "src/auth",
+            "changesCount": 4,
+            "failureCount": 6,
+            "maintenanceCount": 2,
+            "riskScore": 68,
+            "lastModifiedAt": "2026-10-03T15:03:21.088Z",
+            "complexityScore": 14
+          },
+          {
+            "path": "src/reports",
+            "changesCount": 2,
+            "failureCount": 2,
+            "maintenanceCount": 1,
+            "riskScore": 38,
+            "lastModifiedAt": "2026-09-26T15:03:21.088Z",
+            "complexityScore": 12
+          },
+          {
+            "path": "src/users",
+            "changesCount": 1,
+            "failureCount": 0,
+            "maintenanceCount": 0,
+            "riskScore": 12,
+            "lastModifiedAt": "2026-09-19T15:03:21.088Z",
+            "complexityScore": 6
+          }
+        ],
+        "timeline": [
+          {
+            "period": "Week 1",
+            "dateLabel": "Sep 7",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 0,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 0,
+            "p95LatencyMs": 0
+          },
+          {
+            "period": "Week 2",
+            "dateLabel": "Sep 14",
+            "testFailures": 3,
+            "buildFailures": 0,
+            "securityFindings": 2,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 2,
+            "p95LatencyMs": 520
+          },
+          {
+            "period": "Week 3",
+            "dateLabel": "Sep 21",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 0,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 1,
+            "p95LatencyMs": 690
+          },
+          {
+            "period": "Week 4",
+            "dateLabel": "Sep 28",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 1,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 6,
+            "p95LatencyMs": 780
+          }
+        ],
+        "recommendations": [
+          {
+            "id": "rec_src_payments_test_1791205088815",
+            "area": "src/payments",
+            "title": "Expand Regression Suite for src/payments",
+            "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+            "priority": "high",
+            "category": "regression_testing",
+            "status": "accepted",
+            "evidenceSummary": "8 recorded test failures across the past 30 days.",
+            "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+            "createdAt": "2026-10-05T12:58:08.815Z"
+          },
+          {
+            "id": "rec_src_payments_refactor_1791205088815",
+            "area": "src/payments",
+            "title": "Modularize & Refactor Critical Paths in src/payments",
+            "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+            "priority": "medium",
+            "category": "refactor_complexity",
+            "status": "proposed",
+            "evidenceSummary": "5 recent commits and 7 patch events in the same module.",
+            "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+            "createdAt": "2026-10-05T12:58:08.815Z"
+          },
+          {
+            "id": "rec_src_payments_sec_1791205088815",
+            "area": "src/payments",
+            "title": "Perform Targeted Security Audit on src/payments",
+            "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+            "priority": "high",
+            "category": "security_review",
+            "status": "proposed",
+            "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+            "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+            "createdAt": "2026-10-05T12:58:08.815Z"
+          },
+          {
+            "id": "rec_src_payments_perf_1791205088815",
+            "area": "src/payments",
+            "title": "Profile Upstream Connection Latency in src/payments",
+            "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+            "priority": "medium",
+            "category": "performance_audit",
+            "status": "proposed",
+            "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+            "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+            "createdAt": "2026-10-05T12:58:08.815Z"
+          },
+          {
+            "id": "rec_src_auth_test_1791205088815",
+            "area": "src/auth",
+            "title": "Expand Regression Suite for src/auth",
+            "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+            "priority": "medium",
+            "category": "regression_testing",
+            "status": "proposed",
+            "evidenceSummary": "6 recorded test failures across the past 30 days.",
+            "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+            "createdAt": "2026-10-05T12:58:08.815Z"
+          },
+          {
+            "id": "rec_src_auth_refactor_1791205088815",
+            "area": "src/auth",
+            "title": "Modularize & Refactor Critical Paths in src/auth",
+            "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+            "priority": "medium",
+            "category": "refactor_complexity",
+            "status": "proposed",
+            "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+            "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+            "createdAt": "2026-10-05T12:58:08.815Z"
+          },
+          {
+            "id": "rec_src_auth_sec_1791205088815",
+            "area": "src/auth",
+            "title": "Perform Targeted Security Audit on src/auth",
+            "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+            "priority": "high",
+            "category": "security_review",
+            "status": "proposed",
+            "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+            "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+            "createdAt": "2026-10-05T12:58:08.815Z"
+          }
+        ],
+        "summary": {
+          "highRiskCount": 1,
+          "mediumRiskCount": 1,
+          "lowRiskCount": 2,
+          "unknownRiskCount": 0,
+          "totalHotspots": 4,
+          "recommendedActionsCount": 7
+        }
+      }
+    },
+    {
+      "id": "pred_94e7898b",
+      "repositoryId": "repo_demo_01",
+      "startedAt": "2026-10-05T12:58:03.508Z",
+      "completedAt": "2026-10-05T12:58:03.512Z",
+      "status": "completed",
+      "report": {
+        "id": "pred_94e7898b",
+        "repositoryId": "repo_demo_01",
+        "repositoryName": "DevFix Demo Platform (auth & payments)",
+        "generatedAt": "2026-10-05T12:58:03.511Z",
+        "durationMs": 3,
+        "totalSignalsAnalyzed": 19,
+        "riskAreas": [
+          {
+            "area": "src/payments",
+            "riskLevel": "high",
+            "confidence": "high",
+            "primaryDrivers": [
+              "8 recorded test failures",
+              "5 recent code modifications",
+              "7 repeated maintenance events",
+              "2 security advisory findings",
+              "P95 latency elevated to 780ms"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/payments",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 5,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-10-02T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/payments",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 19,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-10-02T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/payments",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 8,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:03.509Z",
+                "metadata": {
+                  "totalRuns": 12
+                }
+              },
+              {
+                "id": "sig_mnt_src/payments",
+                "category": "maintenance_frequency",
+                "signalName": "Maintenance Event Frequency",
+                "value": 7,
+                "unit": "events",
+                "period": "30_days",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:58:03.509Z"
+              },
+              {
+                "id": "sig_sec_sec_01",
+                "category": "security_findings",
+                "signalName": "Security: Timing Attack in Signature Verification",
+                "value": 2,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-30T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-208",
+                  "title": "Timing Attack in Signature Verification"
+                }
+              },
+              {
+                "id": "sig_sec_sec_02",
+                "category": "security_findings",
+                "signalName": "Security: Permissive CORS configuration on internal webhook endpoint",
+                "value": 1,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-20T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-942",
+                  "title": "Permissive CORS configuration on internal webhook endpoint"
+                }
+              },
+              {
+                "id": "sig_perf_src/payments",
+                "category": "performance_regression",
+                "signalName": "P95 Response Latency",
+                "value": 780,
+                "unit": "ms",
+                "period": "30_days",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:58:03.509Z"
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/payments_1791205083511",
+                "category": "test",
+                "area": "src/payments",
+                "observation": "8 recorded test failures in src/payments.",
+                "evidenceText": "Database records confirm 8 failing test executions out of 12 recorded runs during the past 30 days.",
+                "interpretation": "The src/payments module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:03.511Z",
+                "numericalEvidence": {
+                  "measuredValue": 8,
+                  "sampleSize": 12
+                }
+              },
+              {
+                "id": "ev_chg_src/payments_1791205083511",
+                "category": "change",
+                "area": "src/payments",
+                "observation": "High change churn detected (5 modifications in 30 days).",
+                "evidenceText": "Commit history logs show 5 separate modifications touching files within src/payments across the past 30 days.",
+                "interpretation": "Frequent code edits correlate with higher defect introduction rates when accompanied by test failures.",
+                "uncertainty": "Refactorings and formatting commits can inflate churn metrics without necessarily introducing defects.",
+                "source": "git_commits",
+                "timestamp": "2026-10-05T12:58:03.511Z",
+                "numericalEvidence": {
+                  "measuredValue": 5
+                }
+              },
+              {
+                "id": "ev_mnt_src/payments_1791205083511",
+                "category": "change",
+                "area": "src/payments",
+                "observation": "Repeated maintenance events (7 bug fixes/patches recorded).",
+                "evidenceText": "Maintenance logs detail 7 targeted bug fixes or emergency patches applied to src/payments in the past month.",
+                "interpretation": "Repeated fixes in the same module suggest underlying structural complexity or incomplete initial remediations.",
+                "uncertainty": "Maintenance events may represent distinct unrelated feature adjustments.",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:58:03.511Z",
+                "numericalEvidence": {
+                  "measuredValue": 7
+                }
+              },
+              {
+                "id": "ev_sec_src/payments_1791205083511",
+                "category": "security",
+                "area": "src/payments",
+                "observation": "2 security advisory findings associated with src/payments.",
+                "evidenceText": "Static analysis and vulnerability scans flagged 2 items (e.g. signature timing attacks or CORS exposure).",
+                "interpretation": "Security review is advisable to verify defense-in-depth and avoid potential exploits in production.",
+                "uncertainty": "Static analysis alerts require manual audit to confirm exploitability in runtime context.",
+                "source": "security_scanner",
+                "timestamp": "2026-10-05T12:58:03.511Z",
+                "numericalEvidence": {
+                  "measuredValue": 2
+                }
+              },
+              {
+                "id": "ev_perf_src/payments_1791205083511",
+                "category": "performance",
+                "area": "src/payments",
+                "observation": "Elevated P95 response latency (780ms).",
+                "evidenceText": "Telemetry recorded response times exceeding standard 500ms SLO threshold (measured P95: 780ms).",
+                "interpretation": "Upstream service calls, lock contention, or inefficient serialization may be degrading throughput.",
+                "uncertainty": "Transient external API latency can temporarily elevate P95 percentiles.",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:58:03.511Z",
+                "numericalEvidence": {
+                  "measuredValue": 780,
+                  "threshold": 500
+                }
+              }
+            ],
+            "reason": "Identified based on: 8 recorded test failures, 5 recent code modifications, 7 repeated maintenance events, 2 security advisory findings, P95 latency elevated to 780ms.",
+            "interpretation": "The src/payments area has accumulated multiple maintenance and stability signals. Proactive review and regression expansion are strongly recommended.",
+            "recommendations": [
+              {
+                "id": "rec_src_payments_test_1791205083511",
+                "area": "src/payments",
+                "title": "Expand Regression Suite for src/payments",
+                "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+                "priority": "high",
+                "category": "regression_testing",
+                "status": "proposed",
+                "evidenceSummary": "8 recorded test failures across the past 30 days.",
+                "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+                "createdAt": "2026-10-05T12:58:03.511Z"
+              },
+              {
+                "id": "rec_src_payments_refactor_1791205083511",
+                "area": "src/payments",
+                "title": "Modularize & Refactor Critical Paths in src/payments",
+                "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+                "priority": "medium",
+                "category": "refactor_complexity",
+                "status": "proposed",
+                "evidenceSummary": "5 recent commits and 7 patch events in the same module.",
+                "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+                "createdAt": "2026-10-05T12:58:03.511Z"
+              },
+              {
+                "id": "rec_src_payments_sec_1791205083511",
+                "area": "src/payments",
+                "title": "Perform Targeted Security Audit on src/payments",
+                "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+                "priority": "high",
+                "category": "security_review",
+                "status": "proposed",
+                "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+                "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+                "createdAt": "2026-10-05T12:58:03.511Z"
+              },
+              {
+                "id": "rec_src_payments_perf_1791205083511",
+                "area": "src/payments",
+                "title": "Profile Upstream Connection Latency in src/payments",
+                "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+                "priority": "medium",
+                "category": "performance_audit",
+                "status": "proposed",
+                "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+                "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+                "createdAt": "2026-10-05T12:58:03.511Z"
+              }
+            ]
+          },
+          {
+            "area": "src/auth",
+            "riskLevel": "medium",
+            "confidence": "high",
+            "primaryDrivers": [
+              "6 test failures",
+              "4 recent code edits",
+              "2 maintenance event(s)",
+              "1 security advisory finding"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/auth",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 4,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-10-03T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/auth",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 14,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-10-03T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/auth",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 6,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:03.509Z",
+                "metadata": {
+                  "totalRuns": 6
+                }
+              },
+              {
+                "id": "sig_mnt_src/auth",
+                "category": "maintenance_frequency",
+                "signalName": "Maintenance Event Frequency",
+                "value": 2,
+                "unit": "events",
+                "period": "30_days",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:58:03.509Z"
+              },
+              {
+                "id": "sig_sec_sec_03",
+                "category": "security_findings",
+                "signalName": "Security: Hardcoded Fallback JWT Secret in Test Helpers",
+                "value": 2,
+                "unit": "severity_rank",
+                "period": "30_days",
+                "source": "security_scanner",
+                "timestamp": "2026-09-14T15:03:21.088Z",
+                "metadata": {
+                  "cve": "CWE-798",
+                  "title": "Hardcoded Fallback JWT Secret in Test Helpers"
+                }
+              },
+              {
+                "id": "sig_perf_src/auth",
+                "category": "performance_regression",
+                "signalName": "P95 Response Latency",
+                "value": 240,
+                "unit": "ms",
+                "period": "30_days",
+                "source": "performance_metrics",
+                "timestamp": "2026-10-05T12:58:03.509Z"
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/auth_1791205083511",
+                "category": "test",
+                "area": "src/auth",
+                "observation": "6 recorded test failures in src/auth.",
+                "evidenceText": "Database records confirm 6 failing test executions out of 6 recorded runs during the past 30 days.",
+                "interpretation": "The src/auth module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:03.511Z",
+                "numericalEvidence": {
+                  "measuredValue": 6,
+                  "sampleSize": 6
+                }
+              },
+              {
+                "id": "ev_chg_src/auth_1791205083511",
+                "category": "change",
+                "area": "src/auth",
+                "observation": "High change churn detected (4 modifications in 30 days).",
+                "evidenceText": "Commit history logs show 4 separate modifications touching files within src/auth across the past 30 days.",
+                "interpretation": "Frequent code edits correlate with higher defect introduction rates when accompanied by test failures.",
+                "uncertainty": "Refactorings and formatting commits can inflate churn metrics without necessarily introducing defects.",
+                "source": "git_commits",
+                "timestamp": "2026-10-05T12:58:03.511Z",
+                "numericalEvidence": {
+                  "measuredValue": 4
+                }
+              },
+              {
+                "id": "ev_mnt_src/auth_1791205083511",
+                "category": "change",
+                "area": "src/auth",
+                "observation": "Repeated maintenance events (2 bug fixes/patches recorded).",
+                "evidenceText": "Maintenance logs detail 2 targeted bug fixes or emergency patches applied to src/auth in the past month.",
+                "interpretation": "Repeated fixes in the same module suggest underlying structural complexity or incomplete initial remediations.",
+                "uncertainty": "Maintenance events may represent distinct unrelated feature adjustments.",
+                "source": "maintenance_log",
+                "timestamp": "2026-10-05T12:58:03.511Z",
+                "numericalEvidence": {
+                  "measuredValue": 2
+                }
+              },
+              {
+                "id": "ev_sec_src/auth_1791205083511",
+                "category": "security",
+                "area": "src/auth",
+                "observation": "1 security advisory findings associated with src/auth.",
+                "evidenceText": "Static analysis and vulnerability scans flagged 1 items (e.g. signature timing attacks or CORS exposure).",
+                "interpretation": "Security review is advisable to verify defense-in-depth and avoid potential exploits in production.",
+                "uncertainty": "Static analysis alerts require manual audit to confirm exploitability in runtime context.",
+                "source": "security_scanner",
+                "timestamp": "2026-10-05T12:58:03.511Z",
+                "numericalEvidence": {
+                  "measuredValue": 1
+                }
+              }
+            ],
+            "reason": "Identified based on: 6 test failures, 4 recent code edits, 2 maintenance event(s), 1 security advisory finding.",
+            "interpretation": "The src/auth area exhibits moderate maintenance signals. Targeted testing and review of recent changes are advised.",
+            "recommendations": [
+              {
+                "id": "rec_src_auth_test_1791205083511",
+                "area": "src/auth",
+                "title": "Expand Regression Suite for src/auth",
+                "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+                "priority": "medium",
+                "category": "regression_testing",
+                "status": "proposed",
+                "evidenceSummary": "6 recorded test failures across the past 30 days.",
+                "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+                "createdAt": "2026-10-05T12:58:03.511Z"
+              },
+              {
+                "id": "rec_src_auth_refactor_1791205083511",
+                "area": "src/auth",
+                "title": "Modularize & Refactor Critical Paths in src/auth",
+                "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+                "priority": "medium",
+                "category": "refactor_complexity",
+                "status": "proposed",
+                "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+                "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+                "createdAt": "2026-10-05T12:58:03.511Z"
+              },
+              {
+                "id": "rec_src_auth_sec_1791205083511",
+                "area": "src/auth",
+                "title": "Perform Targeted Security Audit on src/auth",
+                "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+                "priority": "high",
+                "category": "security_review",
+                "status": "proposed",
+                "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+                "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+                "createdAt": "2026-10-05T12:58:03.511Z"
+              }
+            ]
+          },
+          {
+            "area": "src/reports",
+            "riskLevel": "low",
+            "confidence": "medium",
+            "primaryDrivers": [
+              "2 test failure(s)"
+            ],
+            "signals": [
+              {
+                "id": "sig_chg_src/reports",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 2,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-09-26T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/reports",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 12,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-09-26T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/reports",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 2,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:03.509Z",
+                "metadata": {
+                  "totalRuns": 2
+                }
+              }
+            ],
+            "evidence": [
+              {
+                "id": "ev_test_src/reports_1791205083511",
+                "category": "test",
+                "area": "src/reports",
+                "observation": "2 recorded test failures in src/reports.",
+                "evidenceText": "Database records confirm 2 failing test executions out of 2 recorded runs during the past 30 days.",
+                "interpretation": "The src/reports module exhibits recurrent test regression signals, indicating potential instability in recently modified paths.",
+                "uncertainty": "Test suite may not cover 100% of internal edge cases; failure count reflects executed test runs only.",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:03.511Z",
+                "numericalEvidence": {
+                  "measuredValue": 2,
+                  "sampleSize": 2
+                }
+              }
+            ],
+            "reason": "Identified based on: 2 test failure(s).",
+            "interpretation": "The src/reports area appears stable based on available recorded evidence.",
+            "recommendations": []
+          },
+          {
+            "area": "src/users",
+            "riskLevel": "low",
+            "confidence": "medium",
+            "primaryDrivers": [],
+            "signals": [
+              {
+                "id": "sig_chg_src/users",
+                "category": "recent_changes",
+                "signalName": "Recent Code Churn",
+                "value": 1,
+                "unit": "modifications",
+                "period": "30_days",
+                "source": "git_commits",
+                "timestamp": "2026-09-19T15:03:21.088Z"
+              },
+              {
+                "id": "sig_cpx_src/users",
+                "category": "code_complexity",
+                "signalName": "Cyclomatic Complexity",
+                "value": 6,
+                "unit": "score",
+                "period": "current",
+                "source": "static_analysis",
+                "timestamp": "2026-09-19T15:03:21.088Z"
+              },
+              {
+                "id": "sig_tst_src/users",
+                "category": "test_failures",
+                "signalName": "Test Failure Frequency",
+                "value": 0,
+                "unit": "failures",
+                "period": "30_days",
+                "source": "test_runs",
+                "timestamp": "2026-10-05T12:58:03.509Z",
+                "metadata": {
+                  "totalRuns": 2
+                }
+              }
+            ],
+            "evidence": [],
+            "reason": "Metrics are within nominal stability thresholds.",
+            "interpretation": "The src/users area appears stable based on available recorded evidence.",
+            "recommendations": []
+          }
+        ],
+        "hotspots": [
+          {
+            "path": "src/payments",
+            "changesCount": 5,
+            "failureCount": 8,
+            "maintenanceCount": 3,
+            "riskScore": 84,
+            "lastModifiedAt": "2026-10-02T15:03:21.088Z",
+            "complexityScore": 19
+          },
+          {
+            "path": "src/auth",
+            "changesCount": 4,
+            "failureCount": 6,
+            "maintenanceCount": 2,
+            "riskScore": 68,
+            "lastModifiedAt": "2026-10-03T15:03:21.088Z",
+            "complexityScore": 14
+          },
+          {
+            "path": "src/reports",
+            "changesCount": 2,
+            "failureCount": 2,
+            "maintenanceCount": 1,
+            "riskScore": 38,
+            "lastModifiedAt": "2026-09-26T15:03:21.088Z",
+            "complexityScore": 12
+          },
+          {
+            "path": "src/users",
+            "changesCount": 1,
+            "failureCount": 0,
+            "maintenanceCount": 0,
+            "riskScore": 12,
+            "lastModifiedAt": "2026-09-19T15:03:21.088Z",
+            "complexityScore": 6
+          }
+        ],
+        "timeline": [
+          {
+            "period": "Week 1",
+            "dateLabel": "Sep 7",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 0,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 0,
+            "p95LatencyMs": 0
+          },
+          {
+            "period": "Week 2",
+            "dateLabel": "Sep 14",
+            "testFailures": 3,
+            "buildFailures": 0,
+            "securityFindings": 2,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 2,
+            "p95LatencyMs": 520
+          },
+          {
+            "period": "Week 3",
+            "dateLabel": "Sep 21",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 0,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 1,
+            "p95LatencyMs": 690
+          },
+          {
+            "period": "Week 4",
+            "dateLabel": "Sep 28",
+            "testFailures": 4,
+            "buildFailures": 1,
+            "securityFindings": 1,
+            "dependencyFindings": 3,
+            "maintenanceEvents": 6,
+            "p95LatencyMs": 780
+          }
+        ],
+        "recommendations": [
+          {
+            "id": "rec_src_payments_test_1791205083511",
+            "area": "src/payments",
+            "title": "Expand Regression Suite for src/payments",
+            "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+            "priority": "high",
+            "category": "regression_testing",
+            "status": "proposed",
+            "evidenceSummary": "8 recorded test failures across the past 30 days.",
+            "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+            "createdAt": "2026-10-05T12:58:03.511Z"
+          },
+          {
+            "id": "rec_src_payments_refactor_1791205083511",
+            "area": "src/payments",
+            "title": "Modularize & Refactor Critical Paths in src/payments",
+            "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+            "priority": "medium",
+            "category": "refactor_complexity",
+            "status": "proposed",
+            "evidenceSummary": "5 recent commits and 7 patch events in the same module.",
+            "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+            "createdAt": "2026-10-05T12:58:03.511Z"
+          },
+          {
+            "id": "rec_src_payments_sec_1791205083511",
+            "area": "src/payments",
+            "title": "Perform Targeted Security Audit on src/payments",
+            "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+            "priority": "high",
+            "category": "security_review",
+            "status": "proposed",
+            "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+            "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+            "createdAt": "2026-10-05T12:58:03.511Z"
+          },
+          {
+            "id": "rec_src_payments_perf_1791205083511",
+            "area": "src/payments",
+            "title": "Profile Upstream Connection Latency in src/payments",
+            "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+            "priority": "medium",
+            "category": "performance_audit",
+            "status": "proposed",
+            "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+            "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+            "createdAt": "2026-10-05T12:58:03.511Z"
+          },
+          {
+            "id": "rec_src_auth_test_1791205083511",
+            "area": "src/auth",
+            "title": "Expand Regression Suite for src/auth",
+            "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+            "priority": "medium",
+            "category": "regression_testing",
+            "status": "proposed",
+            "evidenceSummary": "6 recorded test failures across the past 30 days.",
+            "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+            "createdAt": "2026-10-05T12:58:03.511Z"
+          },
+          {
+            "id": "rec_src_auth_refactor_1791205083511",
+            "area": "src/auth",
+            "title": "Modularize & Refactor Critical Paths in src/auth",
+            "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+            "priority": "medium",
+            "category": "refactor_complexity",
+            "status": "proposed",
+            "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+            "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+            "createdAt": "2026-10-05T12:58:03.511Z"
+          },
+          {
+            "id": "rec_src_auth_sec_1791205083511",
+            "area": "src/auth",
+            "title": "Perform Targeted Security Audit on src/auth",
+            "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+            "priority": "high",
+            "category": "security_review",
+            "status": "proposed",
+            "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+            "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+            "createdAt": "2026-10-05T12:58:03.511Z"
+          }
+        ],
+        "summary": {
+          "highRiskCount": 1,
+          "mediumRiskCount": 1,
+          "lowRiskCount": 2,
+          "unknownRiskCount": 0,
+          "totalHotspots": 4,
+          "recommendedActionsCount": 7
+        }
+      }
+    },
     {
       "id": "pred_2f781f62",
       "repositoryId": "repo_demo_01",
@@ -6418,6 +9214,24 @@
   ],
   "testHistory": [
     {
+      "id": "tr_1791205187003",
+      "repositoryId": "repo_demo_01",
+      "module": "src/payments",
+      "testName": "src/payments/paymentService.test.js",
+      "passed": true,
+      "durationMs": 340,
+      "timestamp": "2026-10-05T12:59:47.003Z"
+    },
+    {
+      "id": "tr_1791205083501",
+      "repositoryId": "repo_demo_01",
+      "module": "src/payments",
+      "testName": "src/payments/paymentService.test.js",
+      "passed": true,
+      "durationMs": 340,
+      "timestamp": "2026-10-05T12:58:03.501Z"
+    },
+    {
       "id": "tr_1791203746619",
       "repositoryId": "repo_demo_01",
       "module": "src/payments",
@@ -6625,6 +9439,20 @@
   ],
   "buildHistory": [
     {
+      "id": "bld_1791205187006",
+      "repositoryId": "repo_demo_01",
+      "status": "success",
+      "durationMs": 14000,
+      "timestamp": "2026-10-05T12:59:47.006Z"
+    },
+    {
+      "id": "bld_1791205083504",
+      "repositoryId": "repo_demo_01",
+      "status": "success",
+      "durationMs": 14000,
+      "timestamp": "2026-10-05T12:58:03.504Z"
+    },
+    {
       "id": "bld_1791203746621",
       "repositoryId": "repo_demo_01",
       "status": "success",
@@ -6763,6 +9591,22 @@
     }
   ],
   "maintenanceHistory": [
+    {
+      "id": "maint_1791205187008",
+      "repositoryId": "repo_demo_01",
+      "area": "src/payments",
+      "type": "patch",
+      "description": "Continuous Quality Watchdog executed automated regression and integrity scan.",
+      "timestamp": "2026-10-05T12:59:47.008Z"
+    },
+    {
+      "id": "maint_1791205083506",
+      "repositoryId": "repo_demo_01",
+      "area": "src/payments",
+      "type": "patch",
+      "description": "Continuous Quality Watchdog executed automated regression and integrity scan.",
+      "timestamp": "2026-10-05T12:58:03.506Z"
+    },
     {
       "id": "maint_1791203746623",
       "repositoryId": "repo_demo_01",
@@ -6909,6 +9753,342 @@
     }
   ],
   "preventiveRecommendations": [
+    {
+      "id": "rec_src_auth_sec_1791205192269",
+      "area": "src/auth",
+      "title": "Perform Targeted Security Audit on src/auth",
+      "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+      "priority": "high",
+      "category": "security_review",
+      "status": "proposed",
+      "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+      "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+      "createdAt": "2026-10-05T12:59:52.269Z"
+    },
+    {
+      "id": "rec_src_auth_refactor_1791205192269",
+      "area": "src/auth",
+      "title": "Modularize & Refactor Critical Paths in src/auth",
+      "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+      "priority": "medium",
+      "category": "refactor_complexity",
+      "status": "proposed",
+      "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+      "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+      "createdAt": "2026-10-05T12:59:52.269Z"
+    },
+    {
+      "id": "rec_src_auth_test_1791205192269",
+      "area": "src/auth",
+      "title": "Expand Regression Suite for src/auth",
+      "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+      "priority": "medium",
+      "category": "regression_testing",
+      "status": "proposed",
+      "evidenceSummary": "6 recorded test failures across the past 30 days.",
+      "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+      "createdAt": "2026-10-05T12:59:52.269Z"
+    },
+    {
+      "id": "rec_src_payments_perf_1791205192269",
+      "area": "src/payments",
+      "title": "Profile Upstream Connection Latency in src/payments",
+      "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+      "priority": "medium",
+      "category": "performance_audit",
+      "status": "proposed",
+      "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+      "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+      "createdAt": "2026-10-05T12:59:52.268Z"
+    },
+    {
+      "id": "rec_src_payments_sec_1791205192269",
+      "area": "src/payments",
+      "title": "Perform Targeted Security Audit on src/payments",
+      "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+      "priority": "high",
+      "category": "security_review",
+      "status": "proposed",
+      "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+      "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+      "createdAt": "2026-10-05T12:59:52.268Z"
+    },
+    {
+      "id": "rec_src_payments_refactor_1791205192269",
+      "area": "src/payments",
+      "title": "Modularize & Refactor Critical Paths in src/payments",
+      "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+      "priority": "medium",
+      "category": "refactor_complexity",
+      "status": "proposed",
+      "evidenceSummary": "5 recent commits and 8 patch events in the same module.",
+      "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+      "createdAt": "2026-10-05T12:59:52.268Z"
+    },
+    {
+      "id": "rec_src_payments_test_1791205192269",
+      "area": "src/payments",
+      "title": "Expand Regression Suite for src/payments",
+      "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+      "priority": "high",
+      "category": "regression_testing",
+      "status": "accepted",
+      "evidenceSummary": "8 recorded test failures across the past 30 days.",
+      "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+      "createdAt": "2026-10-05T12:59:52.268Z"
+    },
+    {
+      "id": "rec_src_auth_sec_1791205187013",
+      "area": "src/auth",
+      "title": "Perform Targeted Security Audit on src/auth",
+      "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+      "priority": "high",
+      "category": "security_review",
+      "status": "proposed",
+      "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+      "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+      "createdAt": "2026-10-05T12:59:47.013Z"
+    },
+    {
+      "id": "rec_src_auth_refactor_1791205187013",
+      "area": "src/auth",
+      "title": "Modularize & Refactor Critical Paths in src/auth",
+      "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+      "priority": "medium",
+      "category": "refactor_complexity",
+      "status": "proposed",
+      "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+      "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+      "createdAt": "2026-10-05T12:59:47.013Z"
+    },
+    {
+      "id": "rec_src_auth_test_1791205187013",
+      "area": "src/auth",
+      "title": "Expand Regression Suite for src/auth",
+      "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+      "priority": "medium",
+      "category": "regression_testing",
+      "status": "proposed",
+      "evidenceSummary": "6 recorded test failures across the past 30 days.",
+      "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+      "createdAt": "2026-10-05T12:59:47.013Z"
+    },
+    {
+      "id": "rec_src_payments_perf_1791205187013",
+      "area": "src/payments",
+      "title": "Profile Upstream Connection Latency in src/payments",
+      "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+      "priority": "medium",
+      "category": "performance_audit",
+      "status": "proposed",
+      "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+      "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+      "createdAt": "2026-10-05T12:59:47.013Z"
+    },
+    {
+      "id": "rec_src_payments_sec_1791205187013",
+      "area": "src/payments",
+      "title": "Perform Targeted Security Audit on src/payments",
+      "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+      "priority": "high",
+      "category": "security_review",
+      "status": "proposed",
+      "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+      "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+      "createdAt": "2026-10-05T12:59:47.013Z"
+    },
+    {
+      "id": "rec_src_payments_refactor_1791205187013",
+      "area": "src/payments",
+      "title": "Modularize & Refactor Critical Paths in src/payments",
+      "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+      "priority": "medium",
+      "category": "refactor_complexity",
+      "status": "proposed",
+      "evidenceSummary": "5 recent commits and 8 patch events in the same module.",
+      "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+      "createdAt": "2026-10-05T12:59:47.013Z"
+    },
+    {
+      "id": "rec_src_payments_test_1791205187013",
+      "area": "src/payments",
+      "title": "Expand Regression Suite for src/payments",
+      "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+      "priority": "high",
+      "category": "regression_testing",
+      "status": "proposed",
+      "evidenceSummary": "8 recorded test failures across the past 30 days.",
+      "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+      "createdAt": "2026-10-05T12:59:47.013Z"
+    },
+    {
+      "id": "rec_src_auth_sec_1791205088815",
+      "area": "src/auth",
+      "title": "Perform Targeted Security Audit on src/auth",
+      "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+      "priority": "high",
+      "category": "security_review",
+      "status": "proposed",
+      "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+      "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+      "createdAt": "2026-10-05T12:58:08.815Z"
+    },
+    {
+      "id": "rec_src_auth_refactor_1791205088815",
+      "area": "src/auth",
+      "title": "Modularize & Refactor Critical Paths in src/auth",
+      "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+      "priority": "medium",
+      "category": "refactor_complexity",
+      "status": "proposed",
+      "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+      "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+      "createdAt": "2026-10-05T12:58:08.815Z"
+    },
+    {
+      "id": "rec_src_auth_test_1791205088815",
+      "area": "src/auth",
+      "title": "Expand Regression Suite for src/auth",
+      "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+      "priority": "medium",
+      "category": "regression_testing",
+      "status": "proposed",
+      "evidenceSummary": "6 recorded test failures across the past 30 days.",
+      "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+      "createdAt": "2026-10-05T12:58:08.815Z"
+    },
+    {
+      "id": "rec_src_payments_perf_1791205088815",
+      "area": "src/payments",
+      "title": "Profile Upstream Connection Latency in src/payments",
+      "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+      "priority": "medium",
+      "category": "performance_audit",
+      "status": "proposed",
+      "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+      "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+      "createdAt": "2026-10-05T12:58:08.815Z"
+    },
+    {
+      "id": "rec_src_payments_sec_1791205088815",
+      "area": "src/payments",
+      "title": "Perform Targeted Security Audit on src/payments",
+      "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+      "priority": "high",
+      "category": "security_review",
+      "status": "proposed",
+      "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+      "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+      "createdAt": "2026-10-05T12:58:08.815Z"
+    },
+    {
+      "id": "rec_src_payments_refactor_1791205088815",
+      "area": "src/payments",
+      "title": "Modularize & Refactor Critical Paths in src/payments",
+      "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+      "priority": "medium",
+      "category": "refactor_complexity",
+      "status": "proposed",
+      "evidenceSummary": "5 recent commits and 7 patch events in the same module.",
+      "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+      "createdAt": "2026-10-05T12:58:08.815Z"
+    },
+    {
+      "id": "rec_src_payments_test_1791205088815",
+      "area": "src/payments",
+      "title": "Expand Regression Suite for src/payments",
+      "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+      "priority": "high",
+      "category": "regression_testing",
+      "status": "accepted",
+      "evidenceSummary": "8 recorded test failures across the past 30 days.",
+      "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+      "createdAt": "2026-10-05T12:58:08.815Z"
+    },
+    {
+      "id": "rec_src_auth_sec_1791205083511",
+      "area": "src/auth",
+      "title": "Perform Targeted Security Audit on src/auth",
+      "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/auth.",
+      "priority": "high",
+      "category": "security_review",
+      "status": "proposed",
+      "evidenceSummary": "1 security advisory warning(s) flagged during static scanning.",
+      "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+      "createdAt": "2026-10-05T12:58:03.511Z"
+    },
+    {
+      "id": "rec_src_auth_refactor_1791205083511",
+      "area": "src/auth",
+      "title": "Modularize & Refactor Critical Paths in src/auth",
+      "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/auth into smaller pure functions.",
+      "priority": "medium",
+      "category": "refactor_complexity",
+      "status": "proposed",
+      "evidenceSummary": "4 recent commits and 2 patch events in the same module.",
+      "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+      "createdAt": "2026-10-05T12:58:03.511Z"
+    },
+    {
+      "id": "rec_src_auth_test_1791205083511",
+      "area": "src/auth",
+      "title": "Expand Regression Suite for src/auth",
+      "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/auth.",
+      "priority": "medium",
+      "category": "regression_testing",
+      "status": "proposed",
+      "evidenceSummary": "6 recorded test failures across the past 30 days.",
+      "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+      "createdAt": "2026-10-05T12:58:03.511Z"
+    },
+    {
+      "id": "rec_src_payments_perf_1791205083511",
+      "area": "src/payments",
+      "title": "Profile Upstream Connection Latency in src/payments",
+      "action": "Implement connection pooling, timeout budgets, and circuit breaker fallback in src/payments.",
+      "priority": "medium",
+      "category": "performance_audit",
+      "status": "proposed",
+      "evidenceSummary": "Measured P95 response latency exceeded 600ms (observed 780ms).",
+      "suggestedPatchPlan": "Configure max connection reuse and enable HTTP client keep-alive.",
+      "createdAt": "2026-10-05T12:58:03.511Z"
+    },
+    {
+      "id": "rec_src_payments_sec_1791205083511",
+      "area": "src/payments",
+      "title": "Perform Targeted Security Audit on src/payments",
+      "action": "Verify constant-time comparisons, input validation sanitizers, and CORS headers in src/payments.",
+      "priority": "high",
+      "category": "security_review",
+      "status": "proposed",
+      "evidenceSummary": "2 security advisory warning(s) flagged during static scanning.",
+      "suggestedPatchPlan": "Apply timingSafeEqual for signature verification and restrict allowed origins on webhook endpoints.",
+      "createdAt": "2026-10-05T12:58:03.511Z"
+    },
+    {
+      "id": "rec_src_payments_refactor_1791205083511",
+      "area": "src/payments",
+      "title": "Modularize & Refactor Critical Paths in src/payments",
+      "action": "Review cyclomatic complexity and decouple heavily modified entry points in src/payments into smaller pure functions.",
+      "priority": "medium",
+      "category": "refactor_complexity",
+      "status": "proposed",
+      "evidenceSummary": "5 recent commits and 7 patch events in the same module.",
+      "suggestedPatchPlan": "Split monolithic service handlers into modular strategy patterns with isolated unit test suites.",
+      "createdAt": "2026-10-05T12:58:03.511Z"
+    },
+    {
+      "id": "rec_src_payments_test_1791205083511",
+      "area": "src/payments",
+      "title": "Expand Regression Suite for src/payments",
+      "action": "Add parameterized unit tests and boundary test cases targeting recent failure points in src/payments.",
+      "priority": "high",
+      "category": "regression_testing",
+      "status": "proposed",
+      "evidenceSummary": "8 recorded test failures across the past 30 days.",
+      "suggestedPatchPlan": "Create dedicated mock fixtures for external dependencies and assert expected error handling for edge cases.",
+      "createdAt": "2026-10-05T12:58:03.511Z"
+    },
     {
       "id": "rec_src_auth_sec_1791203751912",
       "area": "src/auth",
