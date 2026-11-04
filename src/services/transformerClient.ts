@@ -92,9 +92,45 @@ export interface GenerationResult {
 
 export const transformerClient = {
   async getStatus(): Promise<TransformerStatusResponse> {
-    const res = await fetch('/api/transformer/status');
-    if (!res.ok) throw new Error('Failed to retrieve Transformer Lab status');
-    return await res.json();
+    try {
+      const res = await fetch('/api/transformer/status');
+      if (!res.ok) {
+        return {
+          status: 'fallback_active',
+          pytorch_version: 'Not Installed (Algorithmic Simulation)',
+          device: 'CPU (Simulation)',
+          cuda_available: false,
+          checkpoint_exists: false,
+          vocab_exists: true,
+          vocab_size: 286,
+          default_config: {
+            d_model: 128,
+            num_heads: 4,
+            num_layers: 2,
+            d_ff: 512,
+            max_seq_len: 64,
+          },
+        };
+      }
+      return await res.json();
+    } catch {
+      return {
+        status: 'fallback_active',
+        pytorch_version: 'Not Installed (Algorithmic Simulation)',
+        device: 'CPU (Simulation)',
+        cuda_available: false,
+        checkpoint_exists: false,
+        vocab_exists: true,
+        vocab_size: 286,
+        default_config: {
+          d_model: 128,
+          num_heads: 4,
+          num_layers: 2,
+          d_ff: 512,
+          max_seq_len: 64,
+        },
+      };
+    }
   },
 
   async tokenize(text: string): Promise<TokenizeResult> {

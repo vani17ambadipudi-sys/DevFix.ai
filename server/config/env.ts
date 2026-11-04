@@ -52,6 +52,14 @@ if (!hasGeminiKey) {
   }
 }
 
+function resolveDatabasePath(): string {
+  const envPath = process.env.DATABASE_PATH;
+  if (!envPath || envPath.includes('://') || envPath.startsWith('postgresql:') || envPath.startsWith('postgres:')) {
+    return './data/devfix.json';
+  }
+  return envPath;
+}
+
 export const config: AppConfig = {
   nodeEnv,
   port: parseNumber(process.env.PORT, 3000),
@@ -74,7 +82,7 @@ export const config: AppConfig = {
   },
   mcpServerUrl: process.env.MCP_SERVER_URL || 'http://localhost:3000/api/mcp',
   transformerServiceUrl: process.env.TRANSFORMER_SERVICE_URL || 'http://localhost:3000/api/transformer',
-  databasePath: process.env.DATABASE_PATH || './data/devfix.json',
+  databasePath: resolveDatabasePath(),
   workspaceRetentionHours: parseNumber(process.env.WORKSPACE_RETENTION_HOURS, 24),
 };
 

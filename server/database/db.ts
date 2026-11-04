@@ -215,6 +215,55 @@ export class Database {
     }
   }
 
+  public checkHealth(): {
+    status: 'healthy' | 'degraded';
+    isLoaded: boolean;
+    recordsCount: number;
+    writable: boolean;
+    filePath: string;
+    error?: string;
+  } {
+    try {
+      const recordsCount =
+        (this.data?.users?.length || 0) +
+        (this.data?.sessions?.length || 0) +
+        (this.data?.repositories?.length || 0) +
+        (this.data?.patches?.length || 0) +
+        (this.data?.testHistory?.length || 0);
+
+      const dir = path.dirname(this.filePath);
+      let writable = false;
+      try {
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true });
+        }
+        fs.accessSync(dir, fs.constants.R_OK | fs.constants.W_OK);
+        writable = true;
+      } catch {
+        writable = false;
+      }
+
+      const status = this.isLoaded && writable ? 'healthy' : 'degraded';
+      return {
+        status,
+        isLoaded: this.isLoaded,
+        recordsCount,
+        writable,
+        filePath: this.filePath,
+      };
+    } catch (err: any) {
+      return {
+        status: 'degraded',
+        isLoaded: this.isLoaded,
+        recordsCount: 0,
+        writable: false,
+        filePath: this.filePath,
+        error: err.message,
+      };
+    }
+  }
+
+
   private seedDemoUser() {
     const salt = crypto.randomBytes(16).toString('hex');
     const passwordHash = crypto.scryptSync('Developer123!', salt, 64).toString('hex');

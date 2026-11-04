@@ -1,45 +1,196 @@
-name: DevFix AI Production CI
+name: DevFix AI — Continuous Integration & Deployment Pipeline
 
+# ==============================================================================
+# Triggers: Push to main, or Pull Requests targeting main
+# ==============================================================================
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
+
+# ==============================================================================
+# Security: Least-Privilege GitHub Actions Permissions
+# ==============================================================================
+permissions:
+  contents: read
+
+# Ensure only one deployment runs at a time on main, cancel in-progress PR builds
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
-  validate-and-test:
-    name: Build, Lint, & Test Automation
+  # ============================================================================
+  # STAGE 1: Continuous Integration (Lint, Typecheck, Tests, Builds, Docker)
+  # ============================================================================
+  ci-validate:
+    name: CI — Validation, Automated Testing & Artifact Verification
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
-      - name: Checkout Source Code
+      # Stage 1: Checkout repository
+      - name: 1. Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-          cache: 'pip'
-
-      - name: Install Python Dependencies for Transformer Lab
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install torch --index-url https://download.pytorch.org/whl/cpu numpy matplotlib
-
-      - name: Set up Node.js 22
+      # Stage 2: Set up Node.js 22 with NPM Cache
+      - name: 2. Set up Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
 
-      - name: Install NPM Dependencies
+      # Stage 3: Set up Python 3.10 with Pip Cache
+      - name: 3. Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      # Stage 4: Install Deterministic Node Dependencies (npm ci)
+      - name: 4. Install Node Dependencies (npm ci)
         run: npm ci
 
-      - name: Run Type Checking & Linting
+      # Stage 5: Install Python Dependencies (PyTorch CPU, NumPy, Matplotlib)
+      - name: 5. Install Python Dependencies for Transformer Lab & Sandbox
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+          pip install --no-cache-dir -r requirements.txt
+
+      # Stage 6: Run Code Linting
+      - name: 6. Run Code Linting
         run: npm run lint
 
-      - name: Run Production Test Automation Suite (Unit & Integration)
-        run: npm test
+      # Stage 7: Run TypeScript Type Checking
+      - name: 7. Run TypeScript Type Checking
+        run: npm run typecheck
 
-      - name: Compile & Build Application
-        run: npm run build
+      # Stage 8: Run All Unit Tests
+      - name: 8. Run All Unit Test Suites (Stages 1-10)
+        run: npm run test:unit
+
+      # Stage 9: Run Integration Tests
+      - name: 9. Run Integration Test Suites (E2E, Failure Modes, Repo Workflow, Predictions)
+        run: npm run test:integration
+
+      # Stage 10: Build Frontend
+      - name: 10. Build Production Frontend (Vite)
+        run: npm run build:frontend
+
+      # Stage 11: Build Backend
+      - name: 11. Build Production Backend Bundle (esbuild)
+        run: npm run build:backend
+
+      # Stage 12: Validate Production Docker Build
+      - name: 12. Validate Production Docker Build
+        run: |
+          echo "Building production Docker image with virtual environment..."
+          docker build -t devfix-ai-platform:ci .
+
+      # Upload Test & Build Reports as Artifacts
+      - name: Upload Build Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: devfix-build-reports
+          path: |
+            dist/
+            package.json
+          retention-days: 7
+
+  # ============================================================================
+  # STAGE 2: Continuous Deployment (Render Production)
+  # ============================================================================
+  cd-deploy:
+    name: CD — Render Production Deployment & Live Health Verification
+    needs: [ci-validate]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 1. Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 2. Verify Deployment Configuration & Secrets
+        id: check-secrets
+        run: |
+          if [ -z "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" ]; then
+            echo "::error::RENDER_DEPLOY_HOOK_URL secret is not configured in GitHub Repository Secrets."
+            echo "Skipping deployment to avoid unverified trigger."
+            exit 1
+          fi
+          echo "RENDER_DEPLOY_HOOK_URL is configured."
+
+      - name: 3. Trigger Render Deployment via Deploy Hook
+        id: trigger-deploy
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          echo "Dispatching deployment trigger to Render..."
+          # Mask hook URL to prevent credential exposure in logs
+          DEPLOY_RESPONSE=$(curl -s -S -X POST "$RENDER_DEPLOY_HOOK_URL")
+          echo "Render deployment trigger acknowledged."
+          # Log response without exposing query params or tokens
+          echo "$DEPLOY_RESPONSE" | sed 's/key=[^&"]*/key=REDACTED/g'
+
+      - name: 4. Poll Production Health Endpoint Verification
+        id: verify-health
+        env:
+          RENDER_HEALTH_URL: ${{ secrets.RENDER_HEALTH_CHECK_URL }}
+        run: |
+          # Default to configured health URL or skip if explicitly disabled
+          TARGET_URL="${RENDER_HEALTH_URL}"
+          if [ -z "$TARGET_URL" ]; then
+            echo "RENDER_HEALTH_CHECK_URL not set in secrets. Checking default endpoint if provided or completing trigger verification."
+            echo "To enable live post-deploy verification, add RENDER_HEALTH_CHECK_URL (e.g., https://devfix-ai.onrender.com/api/health) to repository secrets."
+            exit 0
+          fi
+
+          echo "Awaiting deployment rollout at: $TARGET_URL"
+          MAX_ATTEMPTS=24
+          SLEEP_SECONDS=10
+          ATTEMPT=1
+          SUCCESS=0
+
+          # Wait initial 15s for Render container rebuild/spin-up
+          sleep 15
+
+          while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
+            echo "Health probe attempt $ATTEMPT of $MAX_ATTEMPTS..."
+            HTTP_RESPONSE=$(curl -s -w "\n%{http_code}" -m 10 "$TARGET_URL" || echo -e "\n000")
+            HTTP_BODY=$(echo "$HTTP_RESPONSE" | head -n -1)
+            HTTP_STATUS=$(echo "$HTTP_RESPONSE" | tail -n 1)
+
+            echo "Response Status Code: $HTTP_STATUS"
+
+            if [ "$HTTP_STATUS" -eq 200 ]; then
+              echo "Production Health Check Passed!"
+              echo "Payload: $HTTP_BODY"
+              SUCCESS=1
+              break
+            fi
+
+            echo "Application still starting or building. Waiting ${SLEEP_SECONDS}s..."
+            sleep $SLEEP_SECONDS
+            ATTEMPT=$((ATTEMPT + 1))
+          done
+
+          if [ $SUCCESS -ne 1 ]; then
+            echo "::error::Post-deployment production health check failed after $((MAX_ATTEMPTS * SLEEP_SECONDS)) seconds."
+            echo "Last HTTP status: $HTTP_STATUS"
+            echo "Last response body: $HTTP_BODY"
+            exit 1
+          fi
+
+      - name: 5. Report Deployment Summary
+        if: always()
+        run: |
+          echo "=========================================================="
+          echo "DevFix AI Deployment Workflow Summary"
+          echo "Commit: ${{ github.sha }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Result: ${{ job.status }}"
+          echo "=========================================================="

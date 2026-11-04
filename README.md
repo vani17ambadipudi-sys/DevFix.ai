@@ -127,14 +127,60 @@ The Model Context Protocol Server exposes 18 standardized tools across Stage 4, 
 | **Stage 8** | Autonomous Repository Engineering | Multi-file repo scanning, bug reproduction, surgical patching, 0-regression checks, unified diffs & developer approval | ✓ Completed |
 | **Stage 9** | Continuous Software Maintenance | Continuous signal ingestion, change hotspots, and test history tracking | ✓ Completed |
 | **Stage 10** | **Predictive Software Engineering** | **Historical trend analysis, explainable risk models, evidence correlation, and preventive recommendations** | **● Active & Operational** |
+| **Stage 11** | **Continuous Integration & CD Gate** | **12-stage deterministic pipeline, Render deployment hook, live health checks, and CI/CD operations dashboard** | **● Active & Verified** |
 
 ---
 
-## 6. Verification & Automated Test Suite (12 Suites Passing)
+## 6. Continuous Integration & Continuous Deployment (CI/CD)
+
+DevFix AI includes an enterprise-grade, deterministic CI/CD pipeline orchestrated via GitHub Actions (`.github/workflows/ci.yml`) targeting production on Render:
+
+```text
+[Developer Push / PR]
+       │
+       ▼
+[GitHub Actions CI]
+  ├── 1. Checkout (actions/checkout@v4)
+  ├── 2. Setup Node.js 22 (cached)
+  ├── 3. Setup Python 3.10 (cached)
+  ├── 4. npm ci (Strict package-lock.json)
+  ├── 5. Python venv install (PyTorch CPU, NumPy, Matplotlib)
+  ├── 6. Code Lint (npm run lint)
+  ├── 7. Typecheck (npm run typecheck)
+  ├── 8. Unit Tests (11 suites: npm run test:unit)
+  ├── 9. Integration Tests (4 suites: npm run test:integration)
+  ├── 10. Frontend Build (npm run build:frontend)
+  ├── 11. Backend Bundle (npm run build:backend)
+  └── 12. Docker Build Validation (PEP 668 compliant virtualenv)
+       │
+       ▼
+ [CI Approval Gate]
+       │
+       ▼ (main branch only)
+[Render CD Deployment]
+  ├── 1. Trigger Deploy Hook (RENDER_DEPLOY_HOOK_URL)
+  ├── 2. Live Health Verification Loop (GET /api/health)
+  └── 3. Verified Rollout (or immediate alert & rollback)
+```
+
+### GitHub Repository Secrets:
+- `RENDER_DEPLOY_HOOK_URL`: Deploy hook from Render service settings.
+- `RENDER_HEALTH_CHECK_URL`: Production health endpoint (e.g. `https://devfix-ai.onrender.com/api/health`).
+- `GEMINI_API_KEY`: API key for Google Gemini model router.
+
+---
+
+## 7. Verification & Automated Test Suite (15 Test Suites Passing)
 
 ```bash
-# Run all 12 test suites
+# Run all 15 automated test suites
 npm test
+
+# Run unit tests only (11 suites)
+npm run test:unit
+
+# Run integration tests only (4 suites)
+npm run test:integration
 ```
 
 ### Complete Suite Inventory:
@@ -144,32 +190,40 @@ npm test
 4. `Unit: MCP Server & Tool Registry` — Tool inventories, documentation queries, and input schemas.
 5. `Unit: Repository Scanner & Path Safety` — Manifest parsing, framework detection, and secret exclusion.
 6. `Unit: Patch System, Diffs & Checkpoints` — Checkpoints, atomic rollbacks, and unified diffs.
-7. `Unit: Prediction & Risk Engine` — Risk scoring, signal aggregation, confidence scoring, and unknown handling.
-8. `Unit: MCP Prediction & Historical Telemetry Tools` — Phase 10 MCP tool inventory and query execution.
-9. `Integration: Single-Snippet E2E Pipeline` — End-to-end off-by-one verification.
-10. `Integration: Failure Modes & Watchdog Timeouts` — Infinite loop watchdog `SIGKILL` termination.
-11. `Integration: Autonomous Repository Workflow` — Full Section 38 repository workflow (reproduction to approval).
-12. `Integration: Predictive Workflow & Recommendation Decisions` — End-to-end predictive pipeline and recommendation transitions.
+7. `Unit: Web Technologies Static Analysis & Linting` — HTML, CSS, JavaScript linting and DOM validation.
+8. `Unit: Continuous Quality Service & Health Gates` — Automated quality score, health gates, and regression tracking.
+9. `Unit: Prediction & Risk Engine` — Risk scoring, signal aggregation, confidence scoring, and unknown handling.
+10. `Unit: MCP Prediction & Historical Telemetry Tools` — Phase 10 MCP tool inventory and query execution.
+11. `Unit: CI/CD Pipeline & Live Health Gate Integrity` — Pipeline stage contracts, token security, and database health.
+12. `Integration: Single-Snippet E2E Pipeline` — End-to-end off-by-one verification.
+13. `Integration: Failure Modes & Watchdog Timeouts` — Infinite loop watchdog `SIGKILL` termination.
+14. `Integration: Autonomous Repository Workflow` — Full Section 38 repository workflow (reproduction to approval).
+15. `Integration: Predictive Workflow & Recommendation Decisions` — End-to-end predictive pipeline and recommendation transitions.
 
 ---
 
-## 7. Local Run Instructions
+## 8. Local Run & Verification Instructions
 
 ```bash
-# Install dependencies
-npm install
+# Deterministic clean install
+npm ci
 
-# Run automated test suite (12 suites, 100% pass)
+# Run TypeScript linter and typechecker
+npm run lint
+npm run typecheck
+
+# Run test suites
 npm test
 
-# Run TypeScript linter
-npm run lint
+# Build frontend and backend
+npm run build:frontend
+npm run build:backend
 
 # Start development server on port 3000
 npm run dev
 
-# Open in browser:
-# Navigate to http://localhost:3000
-# Click "Predictive Ops" in header to view Risk Areas, Historical Trends, and Preventive Actions
-# Click "Run Predictive Analysis" to synthesize repository telemetry live
+# Verify health endpoint live
+curl -s http://localhost:3000/api/health | jq
 ```
+
+Navigate to `http://localhost:3000`, open **Production Dashboard**, and scroll to **CI/CD Pipeline & Deployment Orchestration** to monitor live runs, probe endpoints, or trigger local pre-flight checks.

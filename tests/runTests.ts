@@ -18,10 +18,11 @@ import { runWebTechnologiesTests } from './unit/webTechnologies.test';
 import { runPredictionRiskEngineTests } from './unit/predictionRiskEngine.test';
 import { runMcpPredictionToolsTests } from './unit/mcpPredictionTools.test';
 import { runPredictiveWorkflowIntegrationTests } from './integration/predictiveWorkflow.test';
+import { runCicdPipelineTests } from './unit/cicdPipeline.test';
 
 async function main() {
   console.log('================================================================');
-  console.log('DevFix AI — Production Test Suite (Stages 1 through 10)');
+  console.log('DevFix AI — Production Test Suite (Stages 1 through 10 & CI/CD Pipeline)');
   console.log('================================================================');
 
   const start = Date.now();
@@ -39,6 +40,7 @@ async function main() {
     { name: 'Unit: Continuous Quality Service & Health Gates (Phase 9)', fn: runContinuousQualityTests },
     { name: 'Unit: Prediction & Risk Engine (Phase 10)', fn: runPredictionRiskEngineTests },
     { name: 'Unit: MCP Prediction & Historical Telemetry Tools (Phase 10)', fn: runMcpPredictionToolsTests },
+    { name: 'Unit: CI/CD Pipeline & Live Health Gate Integrity', fn: runCicdPipelineTests },
     { name: 'Integration: Single-Snippet E2E Pipeline (Stage 3 & 7)', fn: runE2ePipelineTests },
     { name: 'Integration: Failure Modes & Watchdog Timeouts', fn: runFailureModesTests },
     { name: 'Integration: Autonomous Repository Workflow (Stage 8)', fn: runRepositoryWorkflowIntegrationTests },

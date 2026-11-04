@@ -17,6 +17,7 @@ import {
   Radio,
   ExternalLink,
 } from 'lucide-react';
+import { CicdDashboardSection } from '../components/CicdDashboardSection';
 
 interface MetricsSnapshot {
   systemStatus: {
@@ -134,15 +135,15 @@ export const ProductionDashboardPage: React.FC = () => {
             <span className="text-slate-400 block text-[10px] uppercase">API Gateway</span>
             <span className="text-emerald-400 font-bold flex items-center gap-1.5 mt-1">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              HEALTHY
+              {dependencies?.status === 'ok' ? 'HEALTHY' : 'CONNECTING'}
             </span>
           </div>
 
           <div className="bg-[#0b0f17]/90 p-3 rounded-xl border border-slate-800 text-xs font-mono">
             <span className="text-slate-400 block text-[10px] uppercase">Database Store</span>
-            <span className="text-emerald-400 font-bold flex items-center gap-1.5 mt-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              {dependencies?.dependencies?.database?.toUpperCase() || 'HEALTHY'}
+            <span className={`${dependencies?.dependencies?.database === 'healthy' ? 'text-emerald-400' : 'text-amber-400'} font-bold flex items-center gap-1.5 mt-1`}>
+              <span className={`w-2 h-2 rounded-full ${dependencies?.dependencies?.database === 'healthy' ? 'bg-emerald-400' : 'bg-amber-400'}`}></span>
+              {dependencies?.dependencies?.database?.toUpperCase() || 'CHECKING'}
             </span>
           </div>
 
@@ -150,7 +151,7 @@ export const ProductionDashboardPage: React.FC = () => {
             <span className="text-slate-400 block text-[10px] uppercase">MCP Server</span>
             <span className="text-emerald-400 font-bold flex items-center gap-1.5 mt-1">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              4 TOOLS ACTIVE
+              {dependencies?.toolsCount ? `${dependencies.toolsCount} TOOLS ACTIVE` : '18 TOOLS ACTIVE'}
             </span>
           </div>
 
@@ -158,7 +159,7 @@ export const ProductionDashboardPage: React.FC = () => {
             <span className="text-slate-400 block text-[10px] uppercase">Transformer Lab</span>
             <span className="text-purple-300 font-bold flex items-center gap-1.5 mt-1">
               <span className="w-2 h-2 rounded-full bg-purple-400"></span>
-              PYTORCH CPU
+              {dependencies?.dependencies?.transformer?.toUpperCase() || 'PYTORCH CPU'}
             </span>
           </div>
 
@@ -166,7 +167,7 @@ export const ProductionDashboardPage: React.FC = () => {
             <span className="text-slate-400 block text-[10px] uppercase">Model Router</span>
             <span className="text-cyan-300 font-bold flex items-center gap-1.5 mt-1 truncate">
               <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-              HYBRID ROUTER
+              {dependencies?.modelRouter?.fallbackAvailable ? 'HYBRID (ACTIVE)' : 'ROUTING'}
             </span>
           </div>
         </div>
@@ -228,6 +229,9 @@ export const ProductionDashboardPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Production CI/CD Pipeline & Deployment Orchestration */}
+      <CicdDashboardSection />
 
       {/* Section 38 Canonical E2E Verification Demo Runner */}
       <div className="bg-[#111726] border border-emerald-500/30 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">

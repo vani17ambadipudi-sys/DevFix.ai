@@ -9,5 +9,7 @@ logs
 .env
 .env.*
 !docker-compose.yml
-checkpoints/*.pt
-checkpoints/*.png
+!transformer-lab/checkpoints/tiny_transformer.pt
+!transformer-lab/checkpoints/tokenizer_vocab.json
+!transformer-lab/checkpoints/training_history.json
+

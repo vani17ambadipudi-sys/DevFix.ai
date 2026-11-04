@@ -92,7 +92,7 @@ export class SecureSandbox {
 
       // 4. Sanitize environment: NEVER pass server secrets, API keys, or JWT tokens to user scripts!
       const sanitizedEnv: NodeJS.ProcessEnv = {
-        PATH: process.env.PATH || '/usr/local/bin:/usr/bin:/bin',
+        PATH: process.env.PATH || '/opt/venv/bin:/usr/local/bin:/usr/bin:/bin',
         NODE_ENV: 'sandbox',
         TMPDIR: sandboxDir,
         HOME: sandboxDir,

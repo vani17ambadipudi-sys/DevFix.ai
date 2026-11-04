@@ -1,30 +1,59 @@
 import { Router, Request, Response } from 'express';
 import { config } from '../config/env';
 import { mcpServer } from '../../mcp-server/server';
+import { db } from '../database/db';
 import fs from 'fs';
 
 const router = Router();
 const startTime = Date.now();
 
 const handleHealth = (req: Request, res: Response) => {
-  res.json({
-    status: 'ok',
-    system: 'DevFix AI Production Platform',
-    version: '7.0.0-prod',
-    uptimeSeconds: Math.floor((Date.now() - startTime) / 1000),
+  const dbHealth = db.checkHealth();
+  const uptime = Math.floor((Date.now() - startTime) / 1000);
+  const isHealthy = dbHealth.status === 'healthy';
+
+  const statusCode = isHealthy ? 200 : 503;
+
+  res.status(statusCode).json({
+    status: isHealthy ? 'healthy' : 'degraded',
+    application: {
+      name: 'DevFix AI Production Platform',
+      status: isHealthy ? 'healthy' : 'degraded',
+      version: '7.0.0-prod',
+      uptimeSeconds: uptime,
+      environment: config.nodeEnv,
+      nodeVersion: process.version,
+    },
+    api: {
+      status: 'operational',
+      port: config.port,
+      rateLimitsConfigured: true,
+      routesMounted: [
+        '/api/auth',
+        '/api/admin',
+        '/api/repositories',
+        '/api/prediction',
+        '/api/quality',
+        '/api/cicd',
+        '/api/health',
+      ],
+    },
+    database: {
+      status: dbHealth.status,
+      isLoaded: dbHealth.isLoaded,
+      writable: dbHealth.writable,
+      recordsCount: dbHealth.recordsCount,
+      path: dbHealth.filePath,
+      ...(dbHealth.error ? { error: dbHealth.error } : {}),
+    },
     timestamp: new Date().toISOString(),
   });
 };
 
 const handleHealthDeps = async (req: Request, res: Response) => {
-  // 1. Database Check
-  let dbStatus = 'healthy';
-  try {
-    const dbExists = fs.existsSync(config.databasePath) || fs.existsSync('./data');
-    dbStatus = dbExists ? 'healthy' : 'degraded';
-  } catch {
-    dbStatus = 'degraded';
-  }
+  // 1. Database Check (Actual Health and Writeability Check)
+  const dbHealth = db.checkHealth();
+  const dbStatus = dbHealth.status;
 
   // 2. Gemini Check
   const geminiStatus = config.hasGeminiKey ? 'available' : 'unconfigured_fallback_ready';

@@ -1,0 +1,9 @@
+# ==============================================================================
+# DevFix AI Platform — Python Dependencies
+# Used by Transformer Lab and Secure Sandboxed Execution
+# Note: For containerized CPU builds, install with PyTorch CPU wheel index:
+# pip install torch --index-url https://download.pytorch.org/whl/cpu
+# ==============================================================================
+torch>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
