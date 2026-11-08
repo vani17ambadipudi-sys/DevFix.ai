@@ -49,17 +49,35 @@ export const ProductionDashboardPage: React.FC = () => {
 
   const fetchDashboardData = async () => {
     try {
+      const safeFetchJson = async (url: string) => {
+        try {
+          const res = await fetch(url);
+          if (!res.ok) return null;
+          const contentType = res.headers.get('content-type') || '';
+          if (!contentType.includes('application/json')) return null;
+          return await res.json();
+        } catch {
+          return null;
+        }
+      };
+
       const [metricsRes, depsRes, tracesRes] = await Promise.all([
-        fetch('/api/admin/metrics').then((r) => r.json()),
-        fetch('/health/dependencies').then((r) => r.json()),
-        fetch('/api/admin/traces').then((r) => r.json()),
+        safeFetchJson('/api/admin/metrics'),
+        safeFetchJson('/api/health/dependencies'),
+        safeFetchJson('/api/admin/traces'),
       ]);
 
-      if (metricsRes.success) setMetrics(metricsRes.data);
-      setDependencies(depsRes);
-      if (tracesRes.success) setTraces(tracesRes.data);
-    } catch (err) {
-      console.error('Failed to load production metrics:', err);
+      if (metricsRes?.success && metricsRes.data) {
+        setMetrics(metricsRes.data);
+      }
+      if (depsRes) {
+        setDependencies(depsRes);
+      }
+      if (tracesRes?.success && Array.isArray(tracesRes.data)) {
+        setTraces(tracesRes.data);
+      }
+    } catch (err: any) {
+      console.info('[Production Dashboard]: Metrics update notice:', err?.message || err);
     } finally {
       setIsLoading(false);
     }
@@ -79,6 +97,15 @@ export const ProductionDashboardPage: React.FC = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       });
+      if (!res.ok) {
+        setDemoResult({ error: `Demo execution returned status ${res.status}` });
+        return;
+      }
+      const ct = res.headers.get('content-type') || '';
+      if (!ct.includes('application/json')) {
+        setDemoResult({ error: 'Server returned non-JSON response' });
+        return;
+      }
       const data = await res.json();
       setDemoResult(data);
       fetchDashboardData();

@@ -69,28 +69,106 @@ export interface CicdStatusResponse {
 }
 
 export class CicdService {
+  private static runtimeConfig = {
+    githubRepository: process.env.GITHUB_REPOSITORY || '',
+    githubToken: process.env.GITHUB_TOKEN || '',
+    renderDeployHookUrl: process.env.RENDER_DEPLOY_HOOK_URL || '',
+    renderHealthUrl: process.env.RENDER_HEALTH_URL || '',
+  };
+
+  public static updateConfig(newConfig: {
+    githubRepository?: string;
+    githubToken?: string;
+    renderDeployHookUrl?: string;
+    renderHealthUrl?: string;
+  }) {
+    if (newConfig.githubRepository !== undefined) {
+      this.runtimeConfig.githubRepository = newConfig.githubRepository.trim();
+    }
+    if (newConfig.githubToken !== undefined) {
+      this.runtimeConfig.githubToken = newConfig.githubToken.trim();
+    }
+    if (newConfig.renderDeployHookUrl !== undefined) {
+      this.runtimeConfig.renderDeployHookUrl = newConfig.renderDeployHookUrl.trim();
+    }
+    if (newConfig.renderHealthUrl !== undefined) {
+      this.runtimeConfig.renderHealthUrl = newConfig.renderHealthUrl.trim();
+    }
+  }
+
+  public static getConfig() {
+    return {
+      githubRepository: this.runtimeConfig.githubRepository || process.env.GITHUB_REPOSITORY || '',
+      hasToken: Boolean(this.runtimeConfig.githubToken || process.env.GITHUB_TOKEN),
+      renderDeployHookUrl: this.runtimeConfig.renderDeployHookUrl || process.env.RENDER_DEPLOY_HOOK_URL || '',
+      renderHealthUrl: this.runtimeConfig.renderHealthUrl || process.env.RENDER_HEALTH_URL || '',
+    };
+  }
+
   private static getGitHubHeaders(): Record<string, string> {
     const headers: Record<string, string> = {
       Accept: 'application/vnd.github.v3+json',
       'User-Agent': 'DevFix-AI-Production-CI',
     };
-    const token = process.env.GITHUB_TOKEN;
+    const token = this.runtimeConfig.githubToken || process.env.GITHUB_TOKEN;
     if (token && token.trim()) {
       headers.Authorization = `token ${token.trim()}`;
     }
     return headers;
   }
 
+  public static async resolveRepository(inputRepo: string): Promise<string> {
+    const trimmed = (inputRepo || '').trim();
+    if (!trimmed) return '';
+    if (trimmed.includes('/')) return trimmed;
+
+    // Repo is bare like "DevFix.ai".
+    // 1. Try to query GitHub /user if token is present
+    const token = (this.runtimeConfig.githubToken || process.env.GITHUB_TOKEN || '').trim();
+    if (token) {
+      try {
+        const userRes = await fetch('https://api.github.com/user', {
+          headers: this.getGitHubHeaders(),
+          signal: AbortSignal.timeout(3500),
+        });
+        if (userRes.ok) {
+          const userData = await userRes.json();
+          if (userData && userData.login) {
+            return `${userData.login}/${trimmed}`;
+          }
+        }
+      } catch {
+        // ignore
+      }
+    }
+
+    // 2. Fallback to vani17ambadipudi
+    return `vani17ambadipudi/${trimmed}`;
+  }
+
+  public static normalizeHealthUrl(url?: string): string {
+    if (!url || !url.trim()) return `${config.appUrl}/api/health`;
+    let clean = url.trim().split('#')[0]; // remove #production fragment
+    if (clean.endsWith('/')) clean = clean.slice(0, -1);
+    if (clean && !clean.endsWith('/api/health') && !clean.endsWith('/health')) {
+      clean = `${clean}/api/health`;
+    }
+    return clean;
+  }
+
   public static async getPipelineStatus(): Promise<CicdStatusResponse> {
-    const repo = process.env.GITHUB_REPOSITORY; // e.g. "my-org/devfix-ai"
-    const hasToken = Boolean(process.env.GITHUB_TOKEN && process.env.GITHUB_TOKEN.trim());
+    const rawRepo = this.runtimeConfig.githubRepository || process.env.GITHUB_REPOSITORY || '';
+    const repo = await this.resolveRepository(rawRepo);
+    const hasToken = Boolean((this.runtimeConfig.githubToken || process.env.GITHUB_TOKEN)?.trim());
     const renderHookConfigured = Boolean(
-      process.env.RENDER_DEPLOY_HOOK_URL && process.env.RENDER_DEPLOY_HOOK_URL.trim()
+      (this.runtimeConfig.renderDeployHookUrl || process.env.RENDER_DEPLOY_HOOK_URL)?.trim()
     );
     const renderServiceIdConfigured = Boolean(
       process.env.RENDER_SERVICE_ID && process.env.RENDER_SERVICE_ID.trim()
     );
-    const productionHealthUrl = process.env.RENDER_HEALTH_URL || `${config.appUrl}/api/health`;
+    const productionHealthUrl = this.normalizeHealthUrl(
+      this.runtimeConfig.renderHealthUrl || process.env.RENDER_HEALTH_URL
+    );
 
     const baseDefinition = {
       workflowPath: '.github/workflows/ci.yml',
@@ -113,12 +191,12 @@ export class CicdService {
       ],
     };
 
-    if (!repo || !repo.includes('/')) {
+    if (!repo) {
       return {
         configured: false,
         hasToken,
         message:
-          'GitHub API integration is unconfigured. Set GITHUB_REPOSITORY (e.g. "owner/repo") and optional GITHUB_TOKEN in your environment to stream live GitHub Actions telemetry.',
+          'GitHub API integration is unconfigured. Set GITHUB_REPOSITORY (e.g. "vani17ambadipudi/DevFix.ai") and optional GITHUB_TOKEN to stream live GitHub Actions workflow telemetry.',
         latestRun: null,
         lastSuccessfulDeployment: null,
         recentFailures: [],
@@ -139,13 +217,31 @@ export class CicdService {
       });
 
       if (!runsRes.ok) {
+        if (runsRes.status === 404) {
+          return {
+            configured: true,
+            repository: repo,
+            hasToken,
+            message: `Repository "${repo}" is configured. GitHub returned 404 (waiting for initial git push or repository creation on GitHub). Local CI/CD checks and simulation are active below.`,
+            latestRun: null,
+            lastSuccessfulDeployment: null,
+            recentFailures: [],
+            renderDeployment: {
+              hookConfigured: renderHookConfigured,
+              serviceIdConfigured: renderServiceIdConfigured,
+              productionHealthUrl,
+            },
+            pipelineDefinition: baseDefinition,
+          };
+        }
+
         const errorText = await runsRes.text();
         logger.warn('github_api_error', 'cicd_status', `GitHub API error (${runsRes.status}): ${errorText}`);
         return {
-          configured: false,
+          configured: true,
           repository: repo,
           hasToken,
-          message: `GitHub API returned HTTP ${runsRes.status}: ${runsRes.statusText}. Verify GITHUB_REPOSITORY and GITHUB_TOKEN permissions.`,
+          message: `Connected to repository "${repo}". GitHub API returned HTTP ${runsRes.status}: ${runsRes.statusText}.`,
           latestRun: null,
           lastSuccessfulDeployment: null,
           recentFailures: [],

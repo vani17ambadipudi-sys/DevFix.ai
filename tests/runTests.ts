@@ -19,6 +19,7 @@ import { runPredictionRiskEngineTests } from './unit/predictionRiskEngine.test';
 import { runMcpPredictionToolsTests } from './unit/mcpPredictionTools.test';
 import { runPredictiveWorkflowIntegrationTests } from './integration/predictiveWorkflow.test';
 import { runCicdPipelineTests } from './unit/cicdPipeline.test';
+import { runDebuggingAgentsTests } from './unit/debuggingAgents.test';
 
 async function main() {
   console.log('================================================================');
@@ -41,6 +42,7 @@ async function main() {
     { name: 'Unit: Prediction & Risk Engine (Phase 10)', fn: runPredictionRiskEngineTests },
     { name: 'Unit: MCP Prediction & Historical Telemetry Tools (Phase 10)', fn: runMcpPredictionToolsTests },
     { name: 'Unit: CI/CD Pipeline & Live Health Gate Integrity', fn: runCicdPipelineTests },
+    { name: 'Unit: Specialized Debugging Agents (Pipeline, Comm, Orch, API, Error, Validation)', fn: runDebuggingAgentsTests },
     { name: 'Integration: Single-Snippet E2E Pipeline (Stage 3 & 7)', fn: runE2ePipelineTests },
     { name: 'Integration: Failure Modes & Watchdog Timeouts', fn: runFailureModesTests },
     { name: 'Integration: Autonomous Repository Workflow (Stage 8)', fn: runRepositoryWorkflowIntegrationTests },

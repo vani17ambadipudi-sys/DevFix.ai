@@ -200,8 +200,10 @@ export class Database {
         this.seedDemoUser();
       }
 
-      // If test history or hotspots are empty, seed realistic engineering telemetry
-      if (this.data.testHistory.length === 0) {
+      // If test history or hotspots are empty, or if telemetry timestamps have aged past 24 days, refresh telemetry
+      const pay08 = this.data.testHistory.find((t) => t.id === 'th_pay_08');
+      const isStale = !pay08 || (Date.now() - new Date(pay08.timestamp).getTime()) > 24 * 24 * 60 * 60 * 1000;
+      if (this.data.testHistory.length === 0 || isStale) {
         this.seedHistoricalTelemetry();
       }
 
@@ -291,8 +293,8 @@ export class Database {
       { id: 'th_pay_04', repositoryId: 'repo_demo_01', module: 'src/payments', testName: 'SubscriptionBilling.renewPlan', passed: false, durationMs: 1980, timestamp: new Date(now - 11 * day).toISOString(), errorMessage: 'DeadlockDetected: concurrent renewal lock timeout' },
       { id: 'th_pay_05', repositoryId: 'repo_demo_01', module: 'src/payments', testName: 'PaymentMethod.attachCustomer', passed: false, durationMs: 760, timestamp: new Date(now - 15 * day).toISOString(), errorMessage: 'NullPointerException: customerId undefined' },
       { id: 'th_pay_06', repositoryId: 'repo_demo_01', module: 'src/payments', testName: 'RefundService.issuePartialRefund', passed: false, durationMs: 1250, timestamp: new Date(now - 18 * day).toISOString(), errorMessage: 'InvalidAmountException: partial refund exceeds balance' },
-      { id: 'th_pay_07', repositoryId: 'repo_demo_01', module: 'src/payments', testName: 'FraudCheck.evaluateVelocity', passed: false, durationMs: 820, timestamp: new Date(now - 22 * day).toISOString(), errorMessage: 'RedisConnectionError: pool exhausted' },
-      { id: 'th_pay_08', repositoryId: 'repo_demo_01', module: 'src/payments', testName: 'CheckoutSession.createSession', passed: false, durationMs: 1540, timestamp: new Date(now - 27 * day).toISOString(), errorMessage: 'HTTP 500: Missing line items array' },
+      { id: 'th_pay_07', repositoryId: 'repo_demo_01', module: 'src/payments', testName: 'FraudCheck.evaluateVelocity', passed: false, durationMs: 820, timestamp: new Date(now - 19 * day).toISOString(), errorMessage: 'RedisConnectionError: pool exhausted' },
+      { id: 'th_pay_08', repositoryId: 'repo_demo_01', module: 'src/payments', testName: 'CheckoutSession.createSession', passed: false, durationMs: 1540, timestamp: new Date(now - 22 * day).toISOString(), errorMessage: 'HTTP 500: Missing line items array' },
       
       // Auth module test failures
       { id: 'th_auth_01', repositoryId: 'repo_demo_01', module: 'src/auth', testName: 'AuthRoute.postLoginEmptyEmail', passed: false, durationMs: 430, timestamp: new Date(now - 1 * day).toISOString(), errorMessage: 'TypeError: Cannot read properties of undefined' },

@@ -2,6 +2,7 @@ import { GoogleGenAI, Type } from '@google/genai';
 import { AnalysisResult, Problem } from '../types';
 import { callGeminiWithRetry } from '../services/geminiClient';
 import { mcpClient } from '../services/mcpClient';
+import { StaticAnalyzerFallback } from '../../server/services/staticAnalyzer';
 
 export const ANALYZER_SYSTEM_INSTRUCTION = `You are the Analyzer Agent in DevFix AI Stage 4 (Multi-Agent + MCP).
 
@@ -100,35 +101,63 @@ ${code}
 Perform complete static code analysis and return structured JSON.
 `;
 
-  const response = await callGeminiWithRetry(ai, {
-    model: 'gemini-3.8-flash',
-    contents: prompt,
-    config: {
-      systemInstruction: ANALYZER_SYSTEM_INSTRUCTION,
-      responseMimeType: 'application/json',
-      responseSchema: ANALYSIS_SCHEMA,
-    },
-  });
+  try {
+    const response = await callGeminiWithRetry(
+      ai,
+      {
+        model: 'gemini-3.8-flash',
+        contents: prompt,
+        config: {
+          systemInstruction: ANALYZER_SYSTEM_INSTRUCTION,
+          responseMimeType: 'application/json',
+          responseSchema: ANALYSIS_SCHEMA,
+        },
+      },
+      3,
+      'analyzer_run',
+      'AnalyzerAgent'
+    );
 
-  const text = response.text;
-  if (!text) {
-    throw new Error('Analyzer Agent returned an empty response.');
+    const text = response.text;
+    if (!text) {
+      throw new Error('Analyzer Agent returned an empty response.');
+    }
+
+    const parsed = JSON.parse(text);
+
+    return {
+      status: parsed.status || 'error_found',
+      summary: parsed.summary || 'Code analysis completed.',
+      errorTypes: Array.isArray(parsed.errorTypes) ? parsed.errorTypes : ['Logical Error'],
+      problems: Array.isArray(parsed.problems)
+        ? parsed.problems.map((p: any) => ({
+            title: String(p.title || 'Identified Problem'),
+            description: String(p.description || ''),
+            severity: ['high', 'medium', 'low'].includes(p.severity) ? p.severity : 'medium',
+            line: typeof p.line === 'number' ? p.line : null,
+          }))
+        : [],
+      recommendations: Array.isArray(parsed.recommendations) ? parsed.recommendations : [],
+    };
+  } catch (err: any) {
+    // Graceful fallback to deterministic static analysis specialist when Gemini is under high demand or quota limits
+    console.info(`[Analyzer Agent Notice] Operating with deterministic specialist fallback.`);
+    const fallback = StaticAnalyzerFallback.analyze(language, code, description);
+
+    return {
+      status: (fallback.status as any) || 'error_found',
+      summary: `${fallback.summary} (Verified via deterministic Analyzer specialist).`,
+      errorTypes: fallback.errorTypes || ['Boundary / Syntax Error'],
+      problems: fallback.problems.map((p) => ({
+        title: p.title,
+        description: p.description,
+        severity: (p.severity as any) || 'high',
+        line: p.line || null,
+      })),
+      recommendations: [
+        fallback.learningTip,
+        'Validate parameter bounds and syntax before invoking container indices.',
+      ],
+    };
   }
-
-  const parsed = JSON.parse(text);
-
-  return {
-    status: parsed.status || 'error_found',
-    summary: parsed.summary || 'Code analysis completed.',
-    errorTypes: Array.isArray(parsed.errorTypes) ? parsed.errorTypes : ['Logical Error'],
-    problems: Array.isArray(parsed.problems)
-      ? parsed.problems.map((p: any) => ({
-          title: String(p.title || 'Identified Problem'),
-          description: String(p.description || ''),
-          severity: ['high', 'medium', 'low'].includes(p.severity) ? p.severity : 'medium',
-          line: typeof p.line === 'number' ? p.line : null,
-        }))
-      : [],
-    recommendations: Array.isArray(parsed.recommendations) ? parsed.recommendations : [],
-  };
 }

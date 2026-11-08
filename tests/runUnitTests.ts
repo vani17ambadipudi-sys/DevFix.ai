@@ -9,6 +9,7 @@ import { runContinuousQualityTests } from './unit/qualityService.test';
 import { runPredictionRiskEngineTests } from './unit/predictionRiskEngine.test';
 import { runMcpPredictionToolsTests } from './unit/mcpPredictionTools.test';
 import { runCicdPipelineTests } from './unit/cicdPipeline.test';
+import { runDebuggingAgentsTests } from './unit/debuggingAgents.test';
 
 async function main() {
   console.log('================================================================');
@@ -31,6 +32,7 @@ async function main() {
     { name: 'Unit: Prediction & Risk Engine (Phase 10)', fn: runPredictionRiskEngineTests },
     { name: 'Unit: MCP Prediction & Historical Telemetry Tools (Phase 10)', fn: runMcpPredictionToolsTests },
     { name: 'Unit: CI/CD Pipeline & Live Health Gate Integrity', fn: runCicdPipelineTests },
+    { name: 'Unit: Specialized Debugging Agents (Pipeline, Comm, Orch, API, Error, Validation)', fn: runDebuggingAgentsTests },
   ];
 
   for (const suite of unitSuites) {

@@ -17,6 +17,22 @@ router.get('/status', rateLimiters.general, async (req: Request, res: Response) 
   }
 });
 
+// 1b. Get and Update Dynamic CI/CD Configuration
+router.get('/config', rateLimiters.general, (req: Request, res: Response) => {
+  res.json({ success: true, data: CicdService.getConfig() });
+});
+
+router.post('/config', rateLimiters.general, async (req: Request, res: Response) => {
+  try {
+    const { githubRepository, githubToken, renderDeployHookUrl, renderHealthUrl } = req.body;
+    CicdService.updateConfig({ githubRepository, githubToken, renderDeployHookUrl, renderHealthUrl });
+    const status = await CicdService.getPipelineStatus();
+    res.json({ success: true, message: 'CI/CD configuration saved successfully', data: status });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // 2. Active Health Check Probe for Production Deployment
 router.get('/health-check', rateLimiters.general, async (req: Request, res: Response) => {
   try {

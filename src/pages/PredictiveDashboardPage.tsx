@@ -61,12 +61,15 @@ export const PredictiveDashboardPage: React.FC = () => {
   const fetchQualityMetrics = async (repoId: string) => {
     try {
       const res = await fetch(`/api/quality/status?repositoryId=${repoId}`);
+      if (!res.ok) return;
+      const ct = res.headers.get('content-type') || '';
+      if (!ct.includes('application/json')) return;
       const data = await res.json();
       if (data.success && data.metrics) {
         setQualityMetrics(data.metrics);
       }
     } catch (err: any) {
-      console.warn('Failed to load quality metrics', err.message);
+      console.info('[Predictive Dashboard]: Quality metrics load notice:', err.message);
     }
   };
 
@@ -77,6 +80,15 @@ export const PredictiveDashboardPage: React.FC = () => {
       await fetchQualityMetrics(repoId);
 
       const res = await fetch(`/api/predictions?repositoryId=${repoId}`);
+      if (!res.ok) {
+        await handleRunPrediction(repoId);
+        return;
+      }
+      const ct = res.headers.get('content-type') || '';
+      if (!ct.includes('application/json')) {
+        await handleRunPrediction(repoId);
+        return;
+      }
       const data = await res.json();
       if (data.success && data.runs && data.runs.length > 0 && data.runs[0].report) {
         setReport(data.runs[0].report);
